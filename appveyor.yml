@@ -1,0 +1,34 @@
+# fix lineendings in Windows
+image:
+  - Visual Studio 2015
+
+init:
+  - git config --global core.autocrlf input
+
+build: off
+
+environment:
+  GITHUB_ACCESS_TOKEN:
+    secure: 5drFLFNj3hmrLLWt385zNdAly6bfTE3nDqLHpmFWfX7XtEVISPek5fwspic32s9i
+
+# appveyor.yml
+install:
+  - set PATH=C:\Ruby22\bin;%CD%;%PATH%
+  - bundle install
+
+build_script:
+- ps: |
+    $ErrorActionPreference="Stop"
+    Start-FileDownload https://github.com/pmq20/squashfuse/files/691217/sqfs43-win32.zip -FileName sqfs43-win32.zip
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    [System.IO.Compression.ZipFile]::ExtractToDirectory("sqfs43-win32.zip", ".")
+
+before_test:
+  - mksquashfs -version
+  - ruby -v
+  - gem -v
+  - bundle -v
+
+
+test_script:
+  - bundle exec rake
