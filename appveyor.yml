@@ -13,15 +13,16 @@ environment:
 
 # appveyor.yml
 install:
-  - set PATH=C:\Ruby24\bin;%CD%;%PATH%
+  - set PATH=C:\Ruby24\bin;C:\workspace;%PATH%
   - bundle install
 
 build_script:
 - ps: |
+    mkdir C:\workspace\
     $ErrorActionPreference="Stop"
-    Start-FileDownload https://github.com/pmq20/squashfuse/files/691217/sqfs43-win32.zip -FileName sqfs43-win32.zip
+    Start-FileDownload https://github.com/pmq20/squashfuse/files/691217/sqfs43-win32.zip -FileName C:\workspace\sqfs43-win32.zip
     Add-Type -AssemblyName System.IO.Compression.FileSystem
-    [System.IO.Compression.ZipFile]::ExtractToDirectory("sqfs43-win32.zip", ".")
+    [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\workspace\sqfs43-win32.zip", "C:\workspace")
 
 before_test:
   - mksquashfs -version
