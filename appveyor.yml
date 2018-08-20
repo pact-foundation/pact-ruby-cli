@@ -14,7 +14,7 @@ environment:
 # appveyor.yml
 install:
   - set PATH=C:\Ruby24\bin;C:\workspace;%PATH%
-  - bundle install
+  # - bundle install
 
 build_script:
 - ps: |
