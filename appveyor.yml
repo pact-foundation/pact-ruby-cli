@@ -35,4 +35,4 @@ before_test:
   - rubyc.exe --version
 
 test_script:
-  - bundle exec rake
+  - rubyc.exe --output pact.exe --gem=pact-cli --gem-version=0.1.0 pact
