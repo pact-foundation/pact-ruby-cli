@@ -28,6 +28,7 @@ build_script:
     mv C:\workspace\rubyc-v0.4.0-x64.exe C:\workspace\rubyc.exe
 
 before_test:
+  - nmake /HELP
   - mksquashfs -version
   - ruby -v
   - gem -v
