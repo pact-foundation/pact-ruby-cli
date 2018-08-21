@@ -1,6 +1,6 @@
 # fix lineendings in Windows
-image:
-  - Visual Studio 2017
+platform:
+  - x64
 
 init:
   - git config --global core.autocrlf input
