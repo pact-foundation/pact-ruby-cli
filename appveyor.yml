@@ -17,26 +17,26 @@ install:
   # - bundle install
 
 build_script:
-- ps: |
-    CALL SET vcvars=%%^VS%VS%COMNTOOLS^%%..\..\VC\vcvarsall.bat
-    SET vcvars
-    '"%vcvars%" %Platform:x64=amd64%'
-    nmake /HELP
-    mkdir C:\workspace\
-    $ErrorActionPreference="Stop"
-    Start-FileDownload https://github.com/pmq20/squashfuse/files/691217/sqfs43-win32.zip -FileName C:\workspace\sqfs43-win32.zip
-    Start-FileDownload http://enclose.io/rubyc/rubyc-x64.zip -FileName C:\workspace\rubyc-x64.zip
-    Add-Type -AssemblyName System.IO.Compression.FileSystem
-    [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\workspace\sqfs43-win32.zip", "C:\workspace")
-    [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\workspace\rubyc-x64.zip", "C:\workspace")
-    mv C:\workspace\rubyc-v0.4.0-x64.exe C:\workspace\rubyc.exe
+# - ps: |
+#     mkdir C:\workspace\
+#     $ErrorActionPreference="Stop"
+#     Start-FileDownload https://github.com/pmq20/squashfuse/files/691217/sqfs43-win32.zip -FileName C:\workspace\sqfs43-win32.zip
+#     Start-FileDownload http://enclose.io/rubyc/rubyc-x64.zip -FileName C:\workspace\rubyc-x64.zip
+#     Add-Type -AssemblyName System.IO.Compression.FileSystem
+#     [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\workspace\sqfs43-win32.zip", "C:\workspace")
+#     [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\workspace\rubyc-x64.zip", "C:\workspace")
+#     mv C:\workspace\rubyc-v0.4.0-x64.exe C:\workspace\rubyc.exe
 
 before_test:
-  - mksquashfs -version
-  - ruby -v
-  - gem -v
-  - bundle -v
-  - rubyc.exe --version
+  - CALL SET vcvars=%%^VS%VS%COMNTOOLS^%%..\..\VC\vcvarsall.bat
+  - SET vcvars
+  - '"%vcvars%" %Platform:x64=amd64%'
+  - nmake /HELP
+  # - mksquashfs -version
+  # - ruby -v
+  # - gem -v
+  # - bundle -v
+  # - rubyc.exe --version
 
 test_script:
 
