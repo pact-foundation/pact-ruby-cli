@@ -18,6 +18,10 @@ install:
 
 build_script:
 - ps: |
+    CALL SET vcvars=%%^VS%VS%COMNTOOLS^%%..\..\VC\vcvarsall.bat
+    SET vcvars
+    '"%vcvars%" %Platform:x64=amd64%'
+    nmake /HELP
     mkdir C:\workspace\
     $ErrorActionPreference="Stop"
     Start-FileDownload https://github.com/pmq20/squashfuse/files/691217/sqfs43-win32.zip -FileName C:\workspace\sqfs43-win32.zip
@@ -28,7 +32,6 @@ build_script:
     mv C:\workspace\rubyc-v0.4.0-x64.exe C:\workspace\rubyc.exe
 
 before_test:
-  - nmake /HELP
   - mksquashfs -version
   - ruby -v
   - gem -v
@@ -36,4 +39,5 @@ before_test:
   - rubyc.exe --version
 
 test_script:
+
   - rubyc.exe --output pact.exe --gem=pact-cli --gem-version=0.1.0 pact
