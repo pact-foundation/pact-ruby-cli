@@ -10,6 +10,8 @@ build: off
 environment:
   GITHUB_ACCESS_TOKEN:
     secure: 5drFLFNj3hmrLLWt385zNdAly6bfTE3nDqLHpmFWfX7XtEVISPek5fwspic32s9i
+  matrix:
+    - vs: "120"
 
 # appveyor.yml
 install:
