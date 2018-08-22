@@ -1,48 +1,47 @@
-# fix lineendings in Windows
-platform:
-  - x64
-
-init:
-  - git config --global core.autocrlf input
-
-build: off
-
-environment:
-  ruby_version: "24-%Platform%"
-  matrix:
-    - vs: "120"
-
-# appveyor.yml
-install:
-  - SET BITS=%Platform:x86=32%
-  - SET BITS=%BITS:x=%
-  - SET OPENSSL_DIR=c:\OpenSSL-Win%BITS%
-  - SET ruby_path=C:\Ruby%ruby_version:-x86=%
-  - set PATH=%ruby_path%\bin;C:\workspace;C:\msys64\mingw64\bin;C:\msys64\usr\bin;%PATH%
-  # - bundle install
+version: '{build}'
 
 build_script:
 - ps: |
-    mkdir C:\workspace\
     $ErrorActionPreference="Stop"
-    Start-FileDownload https://github.com/pmq20/squashfuse/files/691217/sqfs43-win32.zip -FileName C:\workspace\sqfs43-win32.zip
-    Start-FileDownload http://enclose.io/rubyc/rubyc-x64.zip -FileName C:\workspace\rubyc-x64.zip
-    Add-Type -AssemblyName System.IO.Compression.FileSystem
-    [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\workspace\sqfs43-win32.zip", "C:\workspace")
-    [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\workspace\rubyc-x64.zip", "C:\workspace")
-    mv C:\workspace\rubyc-v0.4.0-x64.exe C:\workspace\rubyc.exe
 
-before_test:
-  - CALL SET vcvars=%%^VS%VS%COMNTOOLS^%%..\..\VC\vcvarsall.bat
-  - SET vcvars
-  - '"%vcvars%" %Platform:x64=amd64%'
-  - nmake /HELP
-  - mksquashfs -version
-  - ruby -v
-  - gem -v
-  - bundle -v
-  - rubyc.exe --version
+    dir C:\projects
+
+    Start-FileDownload https://github.com/pmq20/squashfuse/files/691217/sqfs43-win32.zip -FileName C:\projects\sqfs43-win32.zip
+
+    Start-FileDownload http://enclose.io/rubyc/rubyc-x64.zip -FileName C:\projects\rubyc-x64.zip
+
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+
+    [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\projects\sqfs43-win32.zip", "C:\projects\usr\bin")
+
+    [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\projects\rubyc-x64.zip", "C:\projects\usr\bin")
+
+    mv C:\projects\usr\bin\rubyc-v0.4.0-x64.exe C:\projects\usr\bin\rubyc.exe
 
 test_script:
-  # - rubyc.exe --output pact.exe --gem=pact-cli --gem-version=0.1.0 pact
-  - rubyc.exe --output bundle.exe --gem=bundler --gem-version=1.16.4 bundle
+- cmd: |
+    dir C:\
+
+    set PATH=C:\Ruby241\bin;C:\projects\usr\bin;%PATH%
+
+    call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64_x86
+
+    where mksquashfs
+
+    mksquashfs -version
+
+    where ruby
+
+    ruby --version
+
+    where gem
+
+    gem --version
+
+    gem install C:\projects\ruby-compiler\ruby\gems\bundler-*.gem --force --local --no-rdoc --no-ri
+
+    where bundle
+
+    bundle --version
+
+    rubyc.exe --output pact.exe --gem=pact-cli --gem-version=0.1.0 pact
