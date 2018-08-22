@@ -38,7 +38,7 @@ test_script:
 
     gem --version
 
-    gem install C:\projects\ruby-compiler\ruby\gems\bundler-*.gem --force --local --no-rdoc --no-ri
+    gem install bundler
 
     where bundle
 
