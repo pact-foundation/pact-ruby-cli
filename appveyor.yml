@@ -22,7 +22,7 @@ test_script:
 - cmd: |
     dir C:\
 
-    set PATH=C:\Ruby24-x64\bin;C:\projects\usr\bin;%PATH%
+    set PATH=C:\Ruby24\bin;C:\projects\usr\bin;%PATH%
 
     call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64_x86
 
