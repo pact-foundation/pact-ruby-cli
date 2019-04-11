@@ -9,7 +9,7 @@ docker run --rm \
  -e PACT_BROKER_BASE_URL \
  -e PACT_BROKER_USERNAME \
  -e PACT_BROKER_PASSWORD \
-  pact:latest \
+  pactfoundation/pact-cli:latest \
   publish \
   ${PWD}/script/support/pacts \
   --consumer-app-version 1.0.0

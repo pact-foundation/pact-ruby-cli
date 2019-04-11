@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker build . -t pact
-docker run --rm pact:latest
+docker build . -t pactfoundation/pact-cli
+docker run --rm pactfoundation/pact-cli:latest
