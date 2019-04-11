@@ -1,16 +1,9 @@
 #!/usr/bin/env ruby
+require 'pact/cli'
 
-puts ARGV
-
-subcommand = ARGV.first
-
-case subcommand
-when 'verify'
-  require 'pact/provider_verifier/cli/verify'
-  Pact::ProviderVerifier::CLI::Verify.start(ARGV[1..-1])
-when 'mock-service'
-  require 'pact/mock_service/cli'
-  Pact::MockService::CLI.start(ARGV[1..-1])
-else 'help'
-  puts "Options are verify and mock-service"
+argv = ARGV.dup
+if argv.first == "help" && argv.size > 1
+  argv.shift
 end
+
+Pact::AggregatedCLI.start([argv.first])

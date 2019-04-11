@@ -3,6 +3,29 @@ lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "pact/cli/version"
 
+def gem_files
+  if Dir.exist?(".git")
+    `git ls-files`.split($/)
+  else
+    root_path      = File.dirname(__FILE__)
+    all_files      = Dir.chdir(root_path) { Dir.glob("**/{*,.*}") }
+    all_files.reject! { |file| [".", ".."].include?(File.basename(file)) || File.directory?(file)}
+    gitignore_path = File.join(root_path, ".gitignore")
+    gitignore      = File.exist?(gitignore_path) ? File.readlines(gitignore_path) : []
+    gitignore.map!    { |line| line.chomp.strip }
+    gitignore.reject! { |line| line.empty? || line =~ /^(#|!)/ }
+
+    all_files.reject do |file|
+      gitignore.any? do |ignore|
+        file.start_with?(ignore) ||
+          File.fnmatch(ignore, file, File::FNM_PATHNAME) ||
+          File.fnmatch(ignore, File.basename(file), File::FNM_PATHNAME)
+      end
+    end
+  end
+end
+
+
 Gem::Specification.new do |spec|
   spec.name          = "pact-cli"
   spec.version       = Pact::Cli::VERSION
@@ -13,17 +36,14 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://pact.io"
   spec.license       = "MIT"
 
-  # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  end
+  spec.files         = gem_files
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
   spec.add_dependency "pact-mock_service"
   spec.add_dependency "pact-provider-verifier"
+  spec.add_dependency "pact_broker-client"
 
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
