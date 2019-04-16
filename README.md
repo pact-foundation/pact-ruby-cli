@@ -1,38 +1,41 @@
-# Pact::Cli
+# Pact CLI
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pact/cli`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'pact-cli'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install pact-cli
+This tool provides an amalgamated CLI for all the Pact CLI tools available in the Pact Ruby implementation (publish and verify pacts, and interact with the Pact Broker), and packages them in a Docker container.
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+$ docker run --rm pactfoundation/pact-cli:latest help
+Commands:
+  broker                          # Interact with a Pact Broker
+  help [COMMAND]                  # Describe available commands or one s...
+  publish PACT_DIRS_OR_FILES ...  # Publish pacts to a Pact Broker.
+  verify PACT_URL ...             # Verify pact(s) against a provider. S...
+  version                         # Print the version
+```
 
-## Development
+eg.
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```
+export PACT_BROKER_BASE_URL="https://test.pact.dius.com.au"
+export PACT_BROKER_USERNAME="dXfltyFMgNOFZAxr8io9wJ37iUpY42M"
+export PACT_BROKER_PASSWORD="O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1"
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+docker run --rm \
+ -e PACT_BROKER_BASE_URL \
+ -e PACT_BROKER_USERNAME \
+ -e PACT_BROKER_PASSWORD \
+  pactfoundation/pact-cli:latest \
+  broker can-i-deploy \
+  --pacticipant Foo \
+  --latest
+```
+
+If you want to use the Pact Mock Service in Docker, you should use https://cloud.docker.com/u/pactfoundation/repository/docker/pactfoundation/pact-mock-service as it requires ports to be mounted exposed correctly in the Dockerfile.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pact-cli.
+Bug reports and pull requests are welcome on GitHub at https://github.com/pact-foundation/pact-cli.
 
 ## License
 
