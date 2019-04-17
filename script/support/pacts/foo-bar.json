@@ -1,5 +1,0 @@
-{
-  "consumer" : { "name" : "Foo" },
-  "provider" : { "name" : "Bar" },
-  "interactions": []
-}

@@ -1,0 +1,36 @@
+{
+  "consumer": {
+    "name": "Foo"
+  },
+  "provider": {
+    "name": "Bar"
+  },
+  "interactions": [
+    {
+      "description": "a request for bar",
+      "providerState": "bar exists",
+      "request": {
+        "method": "GET",
+        "path": "/bar",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": "1",
+          "name": "Bar"
+        }
+      }
+    }
+  ],
+  "metdata": {
+    "pactSpecification": {
+      "version": "2"
+    }
+  }
+}

@@ -22,7 +22,8 @@ RUN gem update --system
 
 RUN bundle config --global silence_root_warning 1
 
-ENV HOME /app
+ENV HOME /pact
+ENV DOCKER true
 WORKDIR $HOME
 
 ADD pact-cli.gemspec .
@@ -33,5 +34,6 @@ RUN bundle install --without test development
 ADD docker/entrypoint.sh $HOME/entrypoint.sh
 ADD bin ./bin
 ADD lib ./lib
+ADD example/pacts ./example/pacts
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/pact/entrypoint.sh"]

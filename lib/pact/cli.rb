@@ -9,7 +9,12 @@ class Thor
       def basename
         argv = ARGV.dup
         argv.delete("help")
-        argv.first || "pact"
+        if ENV['DOCKER']
+          argv.unshift # remove "pact"
+          argv.first || ""
+        else
+          argv.first || "pact"
+        end
       end
     end
   end
