@@ -1,26 +1,41 @@
-# Copied with thanks from https://github.com/DannyBen/docker-alpine-ruby
-
 FROM alpine:3.9
 
-ENV BUILD_PACKAGES bash curl curl-dev ruby-dev build-base
-ENV RUBY_PACKAGES \
-  ruby ruby-io-console ruby-irb \
-  ruby-json ruby-etc ruby-bigdecimal ruby-rdoc \
-  libffi-dev zlib-dev
-ENV TERM=linux
-ENV PS1 "\n\n>> ruby \W \$ "
+LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
-RUN apk --no-cache add $BUILD_PACKAGES $RUBY_PACKAGES
+ENV NOKOGIRI_USE_SYSTEM_LIBRARIES=1
+ENV BUNDLE_SILENCE_ROOT_WARNING=1
 
-RUN echo 'gem: --no-document' > /etc/gemrc && \
-    gem install bundler
+ADD docker/gemrc /root/.gemrc
 
 # Update from rubygems 2.7.6 to 3.0.3 for security reasons
 # Verify with gem -v
 # TODO: Remove this when it is no longer needed
-RUN gem update --system
+# For some reason this line changes the image size from 60 to 80 MB?!?
 
-RUN bundle config --global silence_root_warning 1
+RUN apk update \
+  && apk add ruby \
+             ruby-bigdecimal \
+             ruby-bundler \
+             ruby-io-console \
+             ca-certificates \
+             libressl \
+             less \
+  && apk add --virtual build-dependencies \
+             build-base \
+             ruby-dev \
+             libressl-dev \
+             ruby-rdoc \
+  \
+  && bundle config build.nokogiri --use-system-libraries \
+  && bundle config git.allow_insecure true \
+  && gem update --system \
+  && gem install json \
+  && gem cleanup \
+  && apk del build-dependencies \
+  && rm -rf /usr/lib/ruby/gems/*/cache/* \
+            /var/cache/apk/* \
+            /tmp/* \
+            /var/tmp/*
 
 ENV HOME /pact
 ENV DOCKER true
