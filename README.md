@@ -63,6 +63,12 @@ docker run --rm \
   --consumer-app-version 1844a123a89e113cff14cee80f1fc6d$(date +%s)
 ```
 
+### Verify pacts
+
+```
+docker-compose -f docker-compose-verify.yml up --build --abort-on-container-exit --exit-code-from pact_verifier
+```
+
 ### Can I deploy?
 
 ```

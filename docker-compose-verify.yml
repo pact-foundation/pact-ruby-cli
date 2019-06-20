@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  api:
+    image: ruby:2.5-alpine
+    command: sh -c "gem install rack && rackup -o 0.0.0.0 -b \"run ->(env){ [200, {}, ['Hello world']] }\""
+    expose:
+      - "9292"
+
+  pact_verifier:
+    image: pactfoundation/pact-cli:latest
+    depends_on:
+      - api
+    environment:
+      - PACT_BROKER_USERNAME
+      - PACT_BROKER_PASSWORD
+      - PACT_BROKER_BASE_URL
+    command: >
+      verify
+      --provider-base-url http://api:9292
+      --provider "Bar"
+      --broker-username $PACT_BROKER_USERNAME
+      --broker-password $PACT_BROKER_PASSWORD
+      --pact-broker-base-url $PACT_BROKER_BASE_URL
+
