@@ -7,4 +7,6 @@ gemspec
 
 group :development do
   gem "pry"
+  gem 'conventional-changelog', '~> 1.3'
+  gem 'bump', '~> 0.5'
 end
