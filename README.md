@@ -51,7 +51,7 @@ docker run --rm  \
 
 ### Publish pacts from host machine
 
-You can clone git@github.com:pact-foundation/pact-ruby-cli.git and run the following from the root directory.
+You can clone `git@github.com:pact-foundation/pact-ruby-cli.git` and run the following from the root directory.
 
 ```
 docker run --rm \
