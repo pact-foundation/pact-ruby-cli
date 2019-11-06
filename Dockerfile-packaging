@@ -1,0 +1,29 @@
+FROM alpine:3.9
+
+ENV NOKOGIRI_USE_SYSTEM_LIBRARIES=1
+ENV BUNDLE_SILENCE_ROOT_WARNING=1
+
+ADD docker/gemrc /root/.gemrc
+
+RUN apk update \
+  && apk add ruby \
+             ruby-bigdecimal \
+             ruby-bundler \
+             ruby-io-console \
+             ca-certificates \
+             libressl \
+             less \
+  && apk add --virtual build-dependencies \
+             build-base \
+             ruby-dev \
+             libressl-dev \
+             ruby-rdoc \
+  \
+  && bundle config build.nokogiri --use-system-libraries \
+  && bundle config git.allow_insecure true \
+  && gem update --system \
+  && gem install json
+
+ENV HOME /pact
+ENV DOCKER true
+WORKDIR $HOME
