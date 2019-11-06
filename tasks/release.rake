@@ -7,7 +7,8 @@ end
 
 desc 'Tag for release'
 task :tag_for_release do | t, args |
-  command = "git tag -a v#{VERSION} -m \"chore(release): version #{VERSION}\" && git push origin v#{VERSION}"
+  version = File.read('VERSION')
+  command = "git tag -a v#{version} -m \"chore(release): version #{version}\" && git push origin v#{version}"
   puts command
   puts `#{command}`
 end
