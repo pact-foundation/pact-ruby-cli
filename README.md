@@ -86,7 +86,7 @@ docker run --rm \
 
 ### Mock service
 
-If you want to use the Pact Mock Service in Docker, you should use https://cloud.docker.com/u/pactfoundation/repository/docker/pactfoundation/pact-mock-service as it requires ports to be mounted exposed correctly in the Dockerfile.
+If you want to use the Pact Mock Service in Docker, you should use https://github.com/pact-foundation/pact-mock-service-docker as it requires ports to be mounted exposed correctly in the Dockerfile.
 
 ## Contributing
 
