@@ -86,7 +86,18 @@ docker run --rm \
 
 ### Mock service
 
-If you want to use the Pact Mock Service in Docker, you should use https://github.com/pact-foundation/pact-mock-service-docker as it requires ports to be mounted exposed correctly in the Dockerfile.
+```
+docker run -dit \
+  --rm \
+  --name pact-mock-service \
+  -p 1234:1234 \
+  -v ${HOST_PACT_DIRECTORY}:/tmp/pacts \
+  pactfoundation/pact-cli:latest \
+  mock-service \
+  -p 1234 \
+  --host 0.0.0.0 \
+  --pact-dir /tmp/pacts
+```
 
 ## Contributing
 
