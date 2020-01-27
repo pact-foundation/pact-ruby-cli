@@ -99,6 +99,19 @@ docker run -dit \
   --pact-dir /tmp/pacts
 ```
 
+The `-it` is required if you want the container to respond to a `ctl+c`. The container takes an unexpectedly long time to shut down when using `docker stop`. This is an open issue.
+
+### Using a custom certificate
+
+```
+docker run --rm \
+ -v <PATH_TO_CERT_FILE_ON_HOST>:/tmp/cacert.pem \
+ -e SSL_CERT_FILE=/tmp/cacert.pem \
+ pactfoundation/pact-cli:latest ...
+```
+
+You can also set `SSL_CERT_DIR` and mount the directory instead of the file.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/pact-foundation/pact-cli.
