@@ -27,3 +27,7 @@ RUN apk update \
 ENV HOME /pact
 ENV DOCKER true
 WORKDIR $HOME
+
+ADD pact-cli.gemspec Gemfile Gemfile.lock $HOME/
+ADD lib/pact/cli/version.rb $HOME/lib/pact/cli/version.rb
+RUN bundle install --without test development
