@@ -36,20 +36,7 @@ Commands:
   broker version                                                             ...
 ```
 
-### Publish an example pact with data baked in to the docker image
-
-```
-docker run --rm  \
-  -e PACT_BROKER_BASE_URL  \
-  -e PACT_BROKER_USERNAME  \
-  -e PACT_BROKER_PASSWORD  \
-  pactfoundation/pact-cli:latest \
-  publish \
-  /pact/example/pacts \
-  --consumer-app-version 1844a123a89e113cff14cee80f1fc6$(date +%s)
-```
-
-### Publish pacts from host machine
+### Publish pacts
 
 You can clone `git@github.com:pact-foundation/pact-ruby-cli.git` and run the following from the root directory.
 
@@ -65,7 +52,22 @@ docker run --rm \
   --consumer-app-version 1844a123a89e113cff14cee80f1fc6d$(date +%s)
 ```
 
+#### Demo only - publish an example pact from data baked into the docker image
+
+```
+docker run --rm  \
+  -e PACT_BROKER_BASE_URL  \
+  -e PACT_BROKER_USERNAME  \
+  -e PACT_BROKER_PASSWORD  \
+  pactfoundation/pact-cli:latest \
+  publish \
+  /pact/example/pacts \
+  --consumer-app-version 1844a123a89e113cff14cee80f1fc6$(date +%s)
+```
+
 ### Verify pacts
+
+See the example [docker-compose-verify.yml](https://github.com/pact-foundation/pact-ruby-cli/blob/master/docker-compose-verify.yml)
 
 ```
 docker-compose -f docker-compose-verify.yml up --build --abort-on-container-exit --exit-code-from pact_verifier
@@ -82,6 +84,20 @@ docker run --rm \
   broker can-i-deploy \
   --pacticipant Foo \
   --latest
+```
+
+### Tag a pacticipant version
+
+```
+docker run --rm \
+ -e PACT_BROKER_BASE_URL \
+ -e PACT_BROKER_USERNAME \
+ -e PACT_BROKER_PASSWORD \
+  pactfoundation/pact-cli:latest \
+  broker create-version-tag \
+  --pacticipant Foo \
+  --version 1844a123a89e113cff14cee80f1fc6d \
+  --tag prod
 ```
 
 ### Mock service
@@ -114,7 +130,7 @@ You can also set `SSL_CERT_DIR` and mount the directory instead of the file.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/pact-foundation/pact-cli.
+Bug reports and pull requests are welcome on GitHub at https://github.com/pact-foundation/pact-ruby-cli.
 
 ## License
 
