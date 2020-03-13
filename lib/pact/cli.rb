@@ -29,6 +29,12 @@ module Pact
       ::Pact::MockService::CLI.start(process_argv("mock-service"))
     end
 
+    desc 'stub-service', 'Run a Pact stub service'
+    def stub_service
+      require 'pact/stub_service/cli'
+      Pact::StubService::CLI.start(process_argv("stub-service"))
+    end
+
     desc 'broker', 'Interact with a Pact Broker'
     def broker
       ::PactBroker::Client::CLI::Broker.start(process_argv("broker"))
