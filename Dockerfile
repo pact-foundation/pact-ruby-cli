@@ -29,7 +29,7 @@ RUN apk update \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
   && gem update --system \
-  && gem install json \
+  && gem install json -v 2.3.0 \
   && gem cleanup \
   && apk del build-dependencies \
   && rm -rf /usr/lib/ruby/gems/*/cache/* \
