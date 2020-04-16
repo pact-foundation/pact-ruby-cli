@@ -2,7 +2,7 @@ desc 'Generate change log'
 task :generate_changelog do
   require 'conventional_changelog'
   require 'pact/cli/version'
-  ConventionalChangelog::Generator.new.generate! version: "v#{Pact::Cli::VERSION}"
+  ConventionalChangelog::Generator.new.generate! version: "#{Pact::Cli::VERSION}-#{ENV.fetch('RELEASE', '1')}"
 end
 
 desc 'Tag for release'
