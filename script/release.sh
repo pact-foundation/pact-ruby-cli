@@ -19,6 +19,7 @@ if git log -1 | grep "feat(gems)"; then
   git commit -m "chore(release): version ${VERSION} [ci-skip]" && git push origin master
   TAG="${VERSION}-${RELEASE}"
   git tag -a ${TAG} -m "chore(release): version ${TAG}" && git push origin ${TAG}
+  echo "Releasing from https://hub.docker.com/repository/docker/pactfoundation/pact-cli/builds"
 else
   echo "No gems updated, not releasing"
 fi
