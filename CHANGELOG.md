@@ -1,3 +1,13 @@
+<a name="0.6.0-1"></a>
+### 0.6.0-1 (2020-05-09)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.15.0[32m, pact-mock_service 3.6.1[32m, pact 1.49.3[32m, pact-provider-verifier 1.30.1[32m, pact_broker-client 1.27.0[32m	 ([07dea42](/../../commit/07dea42))
+
+
 <a name="0.5.0-1"></a>
 ### 0.5.0-1 (2020-04-17)
 
