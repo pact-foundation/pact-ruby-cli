@@ -52,6 +52,8 @@ docker run --rm \
   --consumer-app-version 1844a123a89e113cff14cee80f1fc6d$(date +%s)
 ```
 
+See https://github.com/pact-foundation/pact_broker-client#publish for all publish options.
+
 #### Demo only - publish an example pact from data baked into the docker image
 
 ```
@@ -73,6 +75,8 @@ See the example [docker-compose-verify.yml](https://github.com/pact-foundation/p
 docker-compose -f docker-compose-verify.yml up --build --abort-on-container-exit --exit-code-from pact_verifier
 ```
 
+See https://github.com/pact-foundation/pact-provider-verifier/#usage for all verification options.
+
 ### Can I deploy?
 
 ```
@@ -85,6 +89,8 @@ docker run --rm \
   --pacticipant Foo \
   --latest
 ```
+
+See https://github.com/pact-foundation/pact_broker-client#can-i-deploy for all options.
 
 ### Tag a pacticipant version
 
@@ -100,7 +106,10 @@ docker run --rm \
   --tag prod
 ```
 
+See https://github.com/pact-foundation/pact_broker-client#create-version-tag for all options.
+
 ### Mock service
+
 
 ```
 docker run -dit \
@@ -116,6 +125,8 @@ docker run -dit \
 ```
 
 The `-it` is required if you want the container to respond to a `ctl+c`. The container takes an unexpectedly long time to shut down when using `docker stop`. This is an open issue.
+
+See https://github.com/pact-foundation/pact-mock_service#mock-service-usage for all options.
 
 ### Using a custom certificate
 
