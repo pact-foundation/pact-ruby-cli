@@ -10,5 +10,5 @@ docker run --rm \
  -e PACT_BROKER_PASSWORD \
   pactfoundation/pact-cli:latest \
   broker can-i-deploy \
-  --pacticipant Foo \
+  --pacticipant docker-example-consumer \
   --latest

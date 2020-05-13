@@ -12,6 +12,8 @@ export PACT_BROKER_USERNAME="dXfltyFMgNOFZAxr8io9wJ37iUpY42M"
 export PACT_BROKER_PASSWORD="O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1"
 ```
 
+The `$(date +%s)` in the examples is just to generate a pseudo random GIT_COMMIT.
+
 If you are using a Pact Broker with bearer token authentication (eg. Pactflow), then set `PACT_BROKER_TOKEN` instead of the username and password.
 
 ### Help
@@ -49,7 +51,7 @@ docker run --rm \
   pactfoundation/pact-cli:latest \
   publish \
   ${PWD}/example/pacts \
-  --consumer-app-version 1844a123a89e113cff14cee80f1fc6d$(date +%s)
+  --consumer-app-version 1844a12$(date +%s)
 ```
 
 See https://github.com/pact-foundation/pact_broker-client#publish for all publish options.
@@ -64,7 +66,7 @@ docker run --rm  \
   pactfoundation/pact-cli:latest \
   publish \
   /pact/example/pacts \
-  --consumer-app-version 1844a123a89e113cff14cee80f1fc6$(date +%s)
+  --consumer-app-version 1844a12$(date +%s)
 ```
 
 ### Verify pacts
@@ -72,7 +74,9 @@ docker run --rm  \
 See the example [docker-compose-verify.yml](https://github.com/pact-foundation/pact-ruby-cli/blob/master/docker-compose-verify.yml)
 
 ```
-docker-compose -f docker-compose-verify.yml up --build --abort-on-container-exit --exit-code-from pact_verifier
+PACT_BROKER_PUBLISH_VERIFICATION_RESULTS=true GIT_COMMIT=62a79cbc$(date +%s) \
+  docker-compose -f docker-compose-verify.yml \
+  up --build --abort-on-container-exit --exit-code-from pact_verifier
 ```
 
 See https://github.com/pact-foundation/pact-provider-verifier/#usage for all verification options.
@@ -86,7 +90,7 @@ docker run --rm \
  -e PACT_BROKER_PASSWORD \
   pactfoundation/pact-cli:latest \
   broker can-i-deploy \
-  --pacticipant Foo \
+  --pacticipant docker-example-consumer \
   --latest
 ```
 
@@ -101,8 +105,8 @@ docker run --rm \
  -e PACT_BROKER_PASSWORD \
   pactfoundation/pact-cli:latest \
   broker create-version-tag \
-  --pacticipant Foo \
-  --version 1844a123a89e113cff14cee80f1fc6d \
+  --pacticipant docker-example-consumer \
+  --version 1844a12$(date +%s) \
   --tag prod
 ```
 

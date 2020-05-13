@@ -3,7 +3,11 @@ version: "3"
 services:
   api:
     image: ruby:2.5-alpine
-    command: sh -c "gem install rack && rackup -o 0.0.0.0 -b \"run ->(env){ [200, {}, ['Hello world']] }\""
+    environment:
+      # Setting the response body as an environment variable is just a way
+      # to get around the multiple layers of nested quotes in the command!
+      RESPONSE_BODY: "{\"id\": \"1\", \"name\": \"Foo\"}"
+    command: sh -c "gem install rack && rackup -o 0.0.0.0 -b \"run ->(env){ [200, {'Content-Type' => 'application/json'}, [ENV['RESPONSE_BODY']]] }\""
     expose:
       - "9292"
 
@@ -15,7 +19,10 @@ services:
       - PACT_BROKER_BASE_URL
       - PACT_BROKER_USERNAME
       - PACT_BROKER_PASSWORD
+      - PACT_BROKER_PUBLISH_VERIFICATION_RESULTS
+      - GIT_COMMIT
     command: >
       verify
       --provider-base-url http://api:9292
-      --provider "Bar"
+      --provider docker-example-provider
+      --provider-app-version ${GIT_COMMIT}

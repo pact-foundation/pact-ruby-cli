@@ -1,9 +1,9 @@
 {
   "consumer": {
-    "name": "Foo"
+    "name": "docker-example-consumer"
   },
   "provider": {
-    "name": "Bar"
+    "name": "docker-example-provider"
   },
   "interactions": [
     {
