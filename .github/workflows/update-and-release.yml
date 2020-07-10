@@ -50,7 +50,7 @@ jobs:
         add: lib/pact/cli/version.rb CHANGELOG.md
         author_name: Beth Skurrie via Github Action
         author_email: beth@bethesque.com
-        message: 'chore(release): version ${TAG}'
+        message: 'chore(release): version ${{ env.TAG }}'
         tag: '${{ env.TAG }}'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
