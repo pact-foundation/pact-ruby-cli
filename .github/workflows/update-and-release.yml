@@ -15,14 +15,14 @@ jobs:
     - uses: actions/setup-ruby@v1
       with:
         ruby-version: '2.6'
-    - run: gem install bundler -v 2.0.2 && bundle install
-    - run: bundle update
+    - run: gem install bundler -v 2.0.2 && bundle update
     - run: git diff
     - run: |
         if ! git diff-index --quiet HEAD Gemfile.lock; then
           updated_gems=$(git diff Gemfile.lock | grep + | grep pact | sed -e "s/+ *//" | ruby -e 'puts ARGF.read.split("\n").join(", ")')
           echo "::set-env name=COMMIT_MESSAGE::updated ${updated_gems}"
         fi
+    - run: echo ${COMMIT_MESSAGE}
 
     # - run: bundle exec bump minor --no-commit
     # - run: bundle exec rake generate_changelog
