@@ -42,7 +42,7 @@ jobs:
         export RELEASE=0
         bundle exec rake generate_changelog
         git diff CHANGELOG.md
-        echo "::set-env name=TAG::bethtest-${VERSION}.${RELEASE}"
+        echo "::set-env name=TAG::${VERSION}.${RELEASE}"
 
     - name: Commit and push version and changelog
       uses: EndBug/add-and-commit@v4
