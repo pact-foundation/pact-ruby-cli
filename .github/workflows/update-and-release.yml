@@ -1,0 +1,31 @@
+name: Release Docker image
+
+on:
+  repository_dispatch:
+    types:
+      - gem-released
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.6'
+    - run: gem install bundler -v 2.0.2 && bundle install
+    - run: bundle exec rake package:update
+    # - run: bundle exec bump minor --no-commit
+    # - run: bundle exec rake generate_changelog
+
+    # - name: Commit and push changes
+    #   uses: EndBug/add-and-commit@v4
+    #   with:
+    #     add: lib/pact/cli/version.rb CHANGELOG.md Gemfile.lock
+    #     author_name: Github Action
+    #     author_email: docs@pact.io
+    #     message: 'chore: ${{ env.COMMIT_MESSAGE }}'
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
