@@ -17,6 +17,7 @@ jobs:
         ruby-version: '2.6'
     - run: gem install bundler -v 2.0.2 && bundle install
     - run: bundle update
+    - run: git diff
     - run: |
         if ! git diff-index --quiet HEAD Gemfile.lock; then
           updated_gems=$(git diff Gemfile.lock | grep + | grep pact | sed -e "s/+ *//" | ruby -e 'puts ARGF.read.split("\n").join(", ")')
