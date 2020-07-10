@@ -5,7 +5,6 @@ on:
     types:
       - gem-released
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,20 +17,10 @@ jobs:
     - name: Update gems
       run: |
         gem install bundler -v 2.0.2 --no-ri --no-rdoc && bundle update
-
         if ! git diff-index --quiet HEAD Gemfile.lock; then
           updated_gems=$(git diff Gemfile.lock | grep + | grep pact | sed -e "s/+ *//" | ruby -e 'puts ARGF.read.split("\n").join(", ")')
           echo "::set-env name=COMMIT_MESSAGE::updated ${updated_gems}"
         fi
-
-      # run: script/workflow-update-gems.sh
-
-    # - run: gem install bundler -v 2.0.2 && bundle update
-    # - run: |
-    #     if ! git diff-index --quiet HEAD Gemfile.lock; then
-    #       updated_gems=$(git diff Gemfile.lock | grep + | grep pact | sed -e "s/+ *//" | ruby -e 'puts ARGF.read.split("\n").join(", ")')
-    #       echo "::set-env name=COMMIT_MESSAGE::updated ${updated_gems}"
-    #     fi
 
     - name: Commit and push gem file changes
       uses: EndBug/add-and-commit@v4
@@ -51,7 +40,6 @@ jobs:
         bundle exec rake generate_changelog
         git diff CHANGELOG.md
         echo "::set-env name=TAG::bethtest-${VERSION}.${RELEASE}"
-      #run: script/workflow-update-version.sh
 
     - name: Commit and push version and changelog
       uses: EndBug/add-and-commit@v4
@@ -63,12 +51,3 @@ jobs:
         tag: '${{ env.TAG }}'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    # - run: bundle exec bump minor --no-commit
-    # - run: |
-    #     version=$(ruby -I lib -e "require 'pact/cli/version.rb'; puts Pact::Cli::VERSION")
-    #     release=0
-    #     echo "::set-env name=VERSION::${version}"
-    #     echo "::set-env name=RELEASE::${release}"
-    #     echo "::set-env name=TAG::${version}.${release}"
-
