@@ -45,6 +45,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pact-provider-verifier"
   spec.add_dependency "pact_broker-client"
 
+  spec.add_development_dependency "bump", "~> 0.9"
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
