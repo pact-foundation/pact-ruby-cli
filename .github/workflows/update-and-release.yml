@@ -16,7 +16,16 @@ jobs:
       with:
         ruby-version: '2.6'
     - name: Update gems
-      run: script/workflow-update-gems.sh
+      run: |
+        gem install bundler -v 2.0.2 --no-ri --no-rdoc && bundle update
+
+        if ! git diff-index --quiet HEAD Gemfile.lock; then
+          updated_gems=$(git diff Gemfile.lock | grep + | grep pact | sed -e "s/+ *//" | ruby -e 'puts ARGF.read.split("\n").join(", ")')
+          echo "::set-env name=COMMIT_MESSAGE::updated ${updated_gems}"
+        fi
+
+      # run: script/workflow-update-gems.sh
+
     # - run: gem install bundler -v 2.0.2 && bundle update
     # - run: |
     #     if ! git diff-index --quiet HEAD Gemfile.lock; then
@@ -35,7 +44,14 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Update version and generate changelog
-      run: script/workflow-update-version.sh
+      run: |
+        bundle exec bump minor --no-commit
+        export VERSION=$(ruby -I lib -e "require 'pact/cli/version.rb'; puts Pact::Cli::VERSION")
+        export RELEASE=0
+        bundle exec rake generate_changelog
+        git diff CHANGELOG.md
+        echo "::set-env name=TAG::bethtest-${VERSION}.${RELEASE}"
+      #run: script/workflow-update-version.sh
 
     - name: Commit and push version and changelog
       uses: EndBug/add-and-commit@v4
