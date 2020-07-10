@@ -47,7 +47,7 @@ jobs:
     - name: Commit and push version and changelog
       uses: EndBug/add-and-commit@v4
       with:
-        add: lib/pact/cli/version.rb CHANGELOG.md
+        add: lib/pact/cli/version.rb Gemfile.lock CHANGELOG.md
         author_name: Beth Skurrie via Github Action
         author_email: beth@bethesque.com
         message: 'chore(release): version ${{ env.TAG }}'
