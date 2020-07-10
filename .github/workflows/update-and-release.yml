@@ -15,24 +15,44 @@ jobs:
     - uses: actions/setup-ruby@v1
       with:
         ruby-version: '2.6'
-    - run: gem install bundler -v 2.0.2 && bundle update
-    - run: git diff
-    - run: |
-        if ! git diff-index --quiet HEAD Gemfile.lock; then
-          updated_gems=$(git diff Gemfile.lock | grep + | grep pact | sed -e "s/+ *//" | ruby -e 'puts ARGF.read.split("\n").join(", ")')
-          echo "::set-env name=COMMIT_MESSAGE::updated ${updated_gems}"
-        fi
-    - run: echo ${COMMIT_MESSAGE}
+    - name: Update gems
+      run: script/workflow-update-gems.sh
+    # - run: gem install bundler -v 2.0.2 && bundle update
+    # - run: |
+    #     if ! git diff-index --quiet HEAD Gemfile.lock; then
+    #       updated_gems=$(git diff Gemfile.lock | grep + | grep pact | sed -e "s/+ *//" | ruby -e 'puts ARGF.read.split("\n").join(", ")')
+    #       echo "::set-env name=COMMIT_MESSAGE::updated ${updated_gems}"
+    #     fi
+
+    - name: Commit and push gem file changes
+      uses: EndBug/add-and-commit@v4
+      with:
+        add: Gemfile.lock
+        author_name: Beth Skurrie via Github Action
+        author_email: beth@bethesque.com
+        message: 'chore: ${{ env.COMMIT_MESSAGE }}'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Update version and generate changelog
+      run: script/workflow-update-version.sh
+
+    - name: Commit and push version and changelog
+      uses: EndBug/add-and-commit@v4
+      with:
+        add: lib/pact/cli/version.rb CHANGELOG.md
+        author_name: Beth Skurrie via Github Action
+        author_email: beth@bethesque.com
+        message: 'chore(release): version ${TAG}'
+        tag: '${{ env.TAG }}'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     # - run: bundle exec bump minor --no-commit
-    # - run: bundle exec rake generate_changelog
+    # - run: |
+    #     version=$(ruby -I lib -e "require 'pact/cli/version.rb'; puts Pact::Cli::VERSION")
+    #     release=0
+    #     echo "::set-env name=VERSION::${version}"
+    #     echo "::set-env name=RELEASE::${release}"
+    #     echo "::set-env name=TAG::${version}.${release}"
 
-    # - name: Commit and push changes
-    #   uses: EndBug/add-and-commit@v4
-    #   with:
-    #     add: lib/pact/cli/version.rb CHANGELOG.md Gemfile.lock
-    #     author_name: Github Action
-    #     author_email: docs@pact.io
-    #     message: 'chore: ${{ env.COMMIT_MESSAGE }}'
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
