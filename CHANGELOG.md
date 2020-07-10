@@ -1,3 +1,13 @@
+<a name="0.7.0.0"></a>
+### 0.7.0.0 (2020-07-10)
+
+
+#### Features
+
+* **gems**
+  * updated pact (1.51.0), pact-provider-verifier (1.31.0)	 ([4dfb5e9](/../../commit/4dfb5e9))
+
+
 <a name="0.6.0-1"></a>
 ### 0.6.0-1 (2020-05-09)
 
