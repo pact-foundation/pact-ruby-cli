@@ -19,7 +19,8 @@ jobs:
     - run: bundle update
     - run: |
         if ! git diff-index --quiet HEAD Gemfile.lock; then
-          git diff Gemfile.lock | grep + | grep pact | sed -e "s/+ *//" | ruby -e 'puts ARGF.read.split("\n").join(", ")'
+          updated_gems=$(git diff Gemfile.lock | grep + | grep pact | sed -e "s/+ *//" | ruby -e 'puts ARGF.read.split("\n").join(", ")')
+          echo "::set-env name=COMMIT_MESSAGE::updated ${updated_gems}"
         fi
 
     # - run: bundle exec bump minor --no-commit
