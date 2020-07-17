@@ -1,0 +1,41 @@
+name: Release Docker image with updated packaging
+
+on:
+  repository_dispatch:
+    types:
+      - package-updated
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - runs: echo "Please set a release number" && exit 1
+      if: ${{ github.event.client_payload.release == '' }}
+
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.6'
+
+    - run: gem install bundler -v 2.0.2
+
+    - name: Generate changelog
+      run: script/workflows/prepare-release.sh
+      env:
+        RELEASE: ${{ github.event.client_payload.release }}
+
+    - name: Commit and push version and changelog
+      uses: EndBug/add-and-commit@v4
+      with:
+        add: CHANGELOG.md
+        author_name: Beth Skurrie via Github Action
+        author_email: beth@bethesque.com
+        message: 'chore(release): version ${{ env.TAG }}'
+        tag: '${{ env.TAG }}'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
