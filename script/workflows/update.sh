@@ -5,6 +5,7 @@
 if [ -n "${RELEASED_GEM_NAME}" ] && [ -n "${RELEASED_GEM_VERSION}" ]; then
   echo "Installing $RELEASED_GEM_NAME version $RELEASED_GEM_VERSION"
   gem install $RELEASED_GEM_NAME -v $RELEASED_GEM_VERSION
+  bundle update $RELEASED_GEM_NAME
 fi
 
 bundle update
