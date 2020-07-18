@@ -11,7 +11,7 @@ jobs:
 
     steps:
 
-    - runs: echo "Please set a release number" && exit 1
+    - run: echo "Please set a release number" && exit 1
       if: ${{ github.event.client_payload.release == '' }}
 
     - uses: actions/checkout@v2
