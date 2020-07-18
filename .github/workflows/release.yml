@@ -6,7 +6,7 @@ on:
       - package-updated
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +22,10 @@ jobs:
       with:
         ruby-version: '2.6'
 
-    - run: gem install bundler -v 2.0.2
+    - name: Install gems
+      run: |
+        gem install bundler -v 2.0.2
+        bundle install
 
     - name: Generate changelog
       run: script/workflows/prepare-release.sh

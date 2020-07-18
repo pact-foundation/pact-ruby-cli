@@ -8,7 +8,7 @@ on:
       - gem-released
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
 
     steps:
