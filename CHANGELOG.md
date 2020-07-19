@@ -1,3 +1,13 @@
+<a name="0.11.3.0"></a>
+### 0.11.3.0 (2020-07-19)
+
+
+#### Features
+
+* **gems**
+  * updated pact_broker-client (~> 1.28), pact_broker-client (1.28.3)	 ([9281f33](/../../commit/9281f33))
+
+
 <a name="0.11.2.0"></a>
 ### 0.11.2.0 (2020-07-18)
 
