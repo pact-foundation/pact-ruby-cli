@@ -74,7 +74,7 @@ docker run --rm  \
 See the example [docker-compose-verify.yml](https://github.com/pact-foundation/pact-ruby-cli/blob/master/docker-compose-verify.yml)
 
 ```
-PACT_BROKER_PUBLISH_VERIFICATION_RESULTS=true GIT_COMMIT=62a79cbc$(date +%s) \
+PACT_BROKER_PUBLISH_VERIFICATION_RESULTS=true GIT_COMMIT=62a79cbc$(date +%s) GIT_BRANCH=master \
   docker-compose -f docker-compose-verify.yml \
   up --build --abort-on-container-exit --exit-code-from pact_verifier
 ```

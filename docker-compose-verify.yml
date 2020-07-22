@@ -21,8 +21,11 @@ services:
       - PACT_BROKER_PASSWORD
       - PACT_BROKER_PUBLISH_VERIFICATION_RESULTS
       - GIT_COMMIT
+      - GIT_BRANCH
     command: >
       verify
       --provider-base-url http://api:9292
       --provider docker-example-provider
       --provider-app-version ${GIT_COMMIT}
+      --provider-version-tag ${GIT_BRANCH}
+      --wait 10
