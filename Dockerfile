@@ -20,6 +20,7 @@ RUN apk update \
              ca-certificates \
              libressl \
              less \
+             git \
   && apk add --virtual build-dependencies \
              build-base \
              ruby-dev \
