@@ -40,6 +40,7 @@ RUN apk update \
 
 ENV HOME /pact
 ENV DOCKER true
+ENV BUNDLE_GEMFILE=$HOME/Gemfile
 WORKDIR $HOME
 
 ADD pact-cli.gemspec .

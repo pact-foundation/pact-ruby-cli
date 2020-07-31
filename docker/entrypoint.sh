@@ -7,5 +7,4 @@ if echo "$@" | grep "/pact/example/pacts" >/dev/null 2>&1 ; then
   mv /tmp/pact.json /pact/example/pacts/pact.json
 fi
 
-cd $HOME
-bundle exec bin/pact "$@"
+bundle exec $HOME/bin/pact "$@"

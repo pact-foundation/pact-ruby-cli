@@ -44,6 +44,7 @@ You can clone `git@github.com:pact-foundation/pact-ruby-cli.git` and run the fol
 
 ```
 docker run --rm \
+ -w ${PWD} \
  -v ${PWD}:${PWD} \
  -e PACT_BROKER_BASE_URL \
  -e PACT_BROKER_USERNAME \
@@ -51,7 +52,8 @@ docker run --rm \
   pactfoundation/pact-cli:latest \
   publish \
   ${PWD}/example/pacts \
-  --consumer-app-version 1844a12$(date +%s)
+  --consumer-app-version fake-git-sha-for-demo-$(date +%s) \
+  --tag-with-git-branch
 ```
 
 See https://github.com/pact-foundation/pact_broker-client#publish for all publish options.
@@ -66,7 +68,7 @@ docker run --rm  \
   pactfoundation/pact-cli:latest \
   publish \
   /pact/example/pacts \
-  --consumer-app-version 1844a12$(date +%s)
+  --consumer-app-version fake-git-sha-for-demo-$(date +%s)
 ```
 
 ### Verify pacts
@@ -74,7 +76,7 @@ docker run --rm  \
 See the example [docker-compose-verify.yml](https://github.com/pact-foundation/pact-ruby-cli/blob/master/docker-compose-verify.yml)
 
 ```
-PACT_BROKER_PUBLISH_VERIFICATION_RESULTS=true GIT_COMMIT=62a79cbc$(date +%s) GIT_BRANCH=master \
+PACT_BROKER_PUBLISH_VERIFICATION_RESULTS=true GIT_COMMIT=fake-git-sha-for-demo$(date +%s) GIT_BRANCH=master \
   docker-compose -f docker-compose-verify.yml \
   up --build --abort-on-container-exit --exit-code-from pact_verifier
 ```
@@ -106,14 +108,13 @@ docker run --rm \
   pactfoundation/pact-cli:latest \
   broker create-version-tag \
   --pacticipant docker-example-consumer \
-  --version 1844a12$(date +%s) \
+  --version fake-git-sha-for-demo-$(date +%s) \
   --tag prod
 ```
 
 See https://github.com/pact-foundation/pact_broker-client#create-version-tag for all options.
 
 ### Mock service
-
 
 ```
 docker run -dit \
