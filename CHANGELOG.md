@@ -1,3 +1,15 @@
+<a name="0.11.4.0"></a>
+### 0.11.4.0 (2020-07-31)
+
+
+#### Features
+
+* **gems**
+  * updated pact_broker-client (1.28.4)	 ([73b0564](/../../commit/73b0564))
+
+* add git to image to support --tag-with-git-branch	 ([7aac3bb](/../../commit/7aac3bb))
+
+
 <a name="0.11.3.0"></a>
 ### 0.11.3.0 (2020-07-19)
 

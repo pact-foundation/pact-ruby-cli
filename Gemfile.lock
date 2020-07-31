@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pact-cli (0.11.3)
+    pact-cli (0.11.4)
       json (~> 2.3)
       pact-mock_service
       pact-provider-verifier
