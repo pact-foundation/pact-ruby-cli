@@ -1,3 +1,12 @@
+<a name="0.11.4.1"></a>
+### 0.11.4.1 (2020-07-31)
+
+
+#### Features
+
+* allow CLI to be executed from any working directory	 ([1a9d95c](/../../commit/1a9d95c))
+
+
 <a name="0.11.4.0"></a>
 ### 0.11.4.0 (2020-07-31)
 
