@@ -33,6 +33,7 @@ RUN apk update \
   && gem install json -v "~>2.3" \
   && gem cleanup \
   && apk del build-dependencies \
+  && find /usr/lib/ruby/gems/2.5.0/gems/ -name Gemfile.lock -maxdepth 2 -delete \
   && rm -rf /usr/lib/ruby/gems/*/cache/* \
             /var/cache/apk/* \
             /tmp/* \
