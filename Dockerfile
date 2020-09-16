@@ -33,7 +33,6 @@ RUN apk update \
   && gem install json -v "~>2.3" \
   && gem cleanup \
   && apk del build-dependencies \
-  && find /usr/lib/ruby/gems/2.5.0/gems/ -name Gemfile.lock -maxdepth 2 -delete \
   && rm -rf /usr/lib/ruby/gems/*/cache/* \
             /var/cache/apk/* \
             /tmp/* \
@@ -48,7 +47,7 @@ ADD pact-cli.gemspec .
 ADD Gemfile .
 ADD Gemfile.lock .
 ADD lib/pact/cli/version.rb ./lib/pact/cli/version.rb
-RUN bundle install --without test development
+RUN bundle install --without test development && find /usr/lib/ruby/gems/2.5.0/gems/ -name Gemfile.lock -maxdepth 2 -delete
 ADD docker/entrypoint.sh $HOME/entrypoint.sh
 ADD bin ./bin
 ADD lib ./lib
