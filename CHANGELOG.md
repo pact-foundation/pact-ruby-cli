@@ -1,3 +1,14 @@
+<a name="0.15.0.0.15.0.1"></a>
+### 0.15.0.0.15.0.1 (2020-09-17)
+
+
+#### Features
+
+* update to alpine:3.12, ruby 2.7, bundler 2.1.4	 ([1b0dad0](/../../commit/1b0dad0))
+* clear Gemfile.lock files after the bundle install	 ([a7c24e7](/../../commit/a7c24e7))
+* manually delete Gemfile.lock files that are causing false positives in vulnerability scanners	 ([2eb7516](/../../commit/2eb7516))
+
+
 <a name="0.15.0.0"></a>
 ### 0.15.0.0 (2020-09-12)
 
