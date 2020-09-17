@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.12
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
@@ -27,6 +27,7 @@ RUN apk update \
              libressl-dev \
              ruby-rdoc \
   \
+  && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
   && gem update --system \
@@ -47,7 +48,9 @@ ADD pact-cli.gemspec .
 ADD Gemfile .
 ADD Gemfile.lock .
 ADD lib/pact/cli/version.rb ./lib/pact/cli/version.rb
-RUN bundle install --without test development && find /usr/lib/ruby/gems/2.5.0/gems/ -name Gemfile.lock -maxdepth 2 -delete
+RUN bundle config set without 'test development' \
+      && bundle install \
+      && find /usr/lib/ruby/gems/2.7.0/gems -name Gemfile.lock -maxdepth 2 -delete
 ADD docker/entrypoint.sh $HOME/entrypoint.sh
 ADD bin ./bin
 ADD lib ./lib
