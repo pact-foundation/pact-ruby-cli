@@ -24,4 +24,4 @@ else
   echo "Release workflow triggered"
 fi
 
-echo "See https://github.com/${repository_slug}/actions?query=workflow%3A%22Release%22"
+echo "See https://github.com/${repository_slug}/actions?query=workflow%3A%22Release+Docker+image+with+updated+packaging%22"
