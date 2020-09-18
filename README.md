@@ -1,6 +1,6 @@
 # Pact CLI
 
-This tool provides an amalgamated CLI of all the Pact CLI tools available in the Pact Ruby implementation (publish and verify pacts, and interact with the Pact Broker). While it is functionally the same as the [pact-ruby-standalone](https://github.com/pact-foundation/pact-ruby-standalone) it provides a Docker container and a single top level entrypoint (`pact`).
+This tool provides an amalgamated CLI of all the Pact CLI tools available in the Pact Ruby implementation (publish and verify pacts, and interact with the Pact Broker). While it is functionally the same as the [pact-ruby-standalone](https://github.com/pact-foundation/pact-ruby-standalone) it is packaged as a Docker container and a single top level entrypoint (`pact`).
 
 ## Usage
 
