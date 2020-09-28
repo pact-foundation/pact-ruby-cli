@@ -1,3 +1,13 @@
+<a name="0.16.3.0"></a>
+### 0.16.3.0 (2020-09-28)
+
+
+#### Features
+
+* **gems**
+  * updated pact (1.55.3), pact-support (~> 1.15), pact-message (0.8.0)	 ([dbd219e](/../../commit/dbd219e))
+
+
 <a name="0.16.2.0"></a>
 ### 0.16.2.0 (2020-09-26)
 
