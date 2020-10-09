@@ -6,6 +6,7 @@ ENV NOKOGIRI_USE_SYSTEM_LIBRARIES=1
 ENV BUNDLE_SILENCE_ROOT_WARNING=1
 
 ADD docker/gemrc /root/.gemrc
+ADD docker/pact /usr/local/bin/pact
 
 # Update from rubygems 2.7.6 to 3.0.3 for security reasons
 # Verify with gem -v
