@@ -1,3 +1,13 @@
+<a name="0.17.0.0"></a>
+### 0.17.0.0 (2020-10-09)
+
+#### Features
+
+* **gems**
+  * updated pact_broker-client (1.30.0)	 ([fe3d7ec](/../../commit/fe3d7ec))
+
+* keep build dependencies for node because of the pact ruby standalone	 ([0ca6f5c](/../../commit/0ca6f5c))
+
 <a name="0.16.3.2"></a>
 ### 0.16.3.2 (2020-10-09)
 
