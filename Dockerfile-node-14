@@ -34,7 +34,6 @@ RUN apk update \
   && gem update --system \
   && gem install json -v "~>2.3" \
   && gem cleanup \
-  && apk del build-dependencies \
   && rm -rf /usr/lib/ruby/gems/*/cache/* \
             /var/cache/apk/* \
             /tmp/* \
