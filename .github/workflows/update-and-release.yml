@@ -37,7 +37,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Update version and generate changelog
+    - id: prepare-release
+      name: Update version and generate changelog
       run: script/workflows/prepare-release.sh
       env:
         INCREMENT: ${{ github.event.client_payload.increment }}
@@ -48,7 +49,7 @@ jobs:
         add: lib/pact/cli/version.rb Gemfile.lock CHANGELOG.md
         author_name: Beth Skurrie via Github Action
         author_email: beth@bethesque.com
-        message: 'chore(release): version ${{ env.TAG }}'
-        tag: '${{ env.TAG }}'
+        message: 'chore(release): version ${{ steps.prepare-release.outputs.tag }}'
+        tag: '${{ steps.prepare-release.outputs.tag }}'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
