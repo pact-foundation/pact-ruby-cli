@@ -27,7 +27,8 @@ jobs:
         gem install bundler -v 2.0.2
         bundle install
 
-    - name: Generate changelog
+    - name: Prepare release
+      id: prepare-release
       run: script/workflows/prepare-release.sh
       env:
         RELEASE: ${{ github.event.client_payload.release }}
@@ -38,7 +39,7 @@ jobs:
         add: CHANGELOG.md
         author_name: Beth Skurrie via Github Action
         author_email: beth@bethesque.com
-        message: 'chore(release): version ${{ env.TAG }}'
-        tag: '${{ env.TAG }}'
+        message: 'chore(release): version ${{ steps.prepare-release.outputs.tag }}'
+        tag: '${{ steps.prepare-release.outputs.tag }}'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

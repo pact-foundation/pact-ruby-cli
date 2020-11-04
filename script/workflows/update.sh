@@ -17,7 +17,7 @@ bundle update
 
 if ! git diff-index --quiet HEAD Gemfile.lock; then
   updated_gems=$(git diff Gemfile.lock | grep + | grep pact | sed -e "s/+ *//" | ruby -e 'puts ARGF.read.split("\n").join(", ")')
-  echo "::set-env name=COMMIT_MESSAGE::updated ${updated_gems}"
+  echo "::set-output name=commit_message::updated ${updated_gems}"
 else
   echo "No gems updated. Exiting."
   exit 1

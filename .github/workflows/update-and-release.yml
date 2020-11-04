@@ -21,7 +21,8 @@ jobs:
 
     - run: gem install bundler -v 2.0.2
 
-    - run: script/workflows/update.sh
+    - id: update
+      run: script/workflows/update.sh
       env:
         RELEASED_GEM_NAME: ${{ github.event.client_payload.name }}
         RELEASED_GEM_VERSION: ${{ github.event.client_payload.version }}
@@ -32,7 +33,7 @@ jobs:
         add: Gemfile.lock
         author_name: Beth Skurrie via Github Action
         author_email: beth@bethesque.com
-        message: 'feat(gems): ${{ env.COMMIT_MESSAGE }}'
+        message: 'feat(gems): ${{ steps.update.outputs.commit_message }}'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
