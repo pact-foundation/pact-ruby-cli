@@ -74,7 +74,7 @@ GEM
       diff-lcs (~> 1.4)
       randexp (~> 0.1.7)
       term-ansicolor (~> 1.0)
-    pact_broker-client (1.32.0)
+    pact_broker-client (1.33.0)
       httparty (~> 0.18)
       rake (~> 13.0)
       table_print (~> 1.5)
