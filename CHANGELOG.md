@@ -1,3 +1,11 @@
+<a name="0.24.0.0"></a>
+### 0.24.0.0 (2020-11-13)
+
+#### Features
+
+* **gems**
+  * updated pact-mock_service (3.7.0), pact-support (~> 1.16, >= 1.16.4)	 ([8b50ed9](/../../commit/8b50ed9))
+
 <a name="0.23.1.0"></a>
 ### 0.23.1.0 (2020-11-12)
 
