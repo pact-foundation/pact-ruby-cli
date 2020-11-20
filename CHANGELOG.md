@@ -1,3 +1,11 @@
+<a name="0.25.0.0"></a>
+### 0.25.0.0 (2020-11-20)
+
+#### Features
+
+* **gems**
+  * updated pact_broker-client (1.34.0)	 ([ae450ec](/../../commit/ae450ec))
+
 <a name="0.24.0.0"></a>
 ### 0.24.0.0 (2020-11-13)
 
