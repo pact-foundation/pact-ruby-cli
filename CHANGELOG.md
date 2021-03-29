@@ -1,3 +1,16 @@
+<a name="0.37.0.0"></a>
+### 0.37.0.0 (2021-03-29)
+
+#### Features
+
+* **gems**
+  * updated pact-provider-verifier (1.35.0)	 ([3b967bc](/../../commit/3b967bc))
+
+#### Bug Fixes
+
+* Dockerfile-node-14 to reduce vulnerabilities (#24)	 ([cfeecf5](/../../commit/cfeecf5))
+* Dockerfile-bundle-base to reduce vulnerabilities (#25)	 ([65b17d6](/../../commit/65b17d6))
+
 <a name="0.36.1.0"></a>
 ### 0.36.1.0 (2021-03-22)
 
