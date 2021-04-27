@@ -1,3 +1,11 @@
+<a name="0.38.0.0"></a>
+### 0.38.0.0 (2021-04-27)
+
+#### Features
+
+* **gems**
+  * updated pact_broker-client (1.39.0)	 ([e13aa5b](/../../commit/e13aa5b))
+
 <a name="0.37.3.0"></a>
 ### 0.37.3.0 (2021-04-20)
 
