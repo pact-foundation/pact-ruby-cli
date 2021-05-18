@@ -1,3 +1,11 @@
+<a name="0.40.0.0"></a>
+### 0.40.0.0 (2021-05-18)
+
+#### Features
+
+* **gems**
+  * updated pact-mock_service (3.9.0)	 ([3efc6c6](/../../commit/3efc6c6))
+
 <a name="0.39.0.0"></a>
 ### 0.39.0.0 (2021-04-28)
 
