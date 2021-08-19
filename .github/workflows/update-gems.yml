@@ -1,11 +1,11 @@
 # TODO abort if there are no changes to the Gemfile.
 
-name: Update gems and release Docker image
+name: Update gems
 
 on:
   repository_dispatch:
     types:
-      - gem-released-disabled
+      - gem-released
 
 jobs:
   release:
@@ -34,22 +34,5 @@ jobs:
         author_name: Beth Skurrie via Github Action
         author_email: beth@bethesque.com
         message: 'feat(gems): ${{ steps.update.outputs.commit_message }}'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - id: prepare-release
-      name: Update version and generate changelog
-      run: script/workflows/prepare-release.sh
-      env:
-        INCREMENT: ${{ github.event.client_payload.increment }}
-
-    - name: Commit and push version and changelog
-      uses: EndBug/add-and-commit@v4
-      with:
-        add: lib/pact/cli/version.rb Gemfile.lock CHANGELOG.md
-        author_name: Beth Skurrie via Github Action
-        author_email: beth@bethesque.com
-        message: 'chore(release): version ${{ steps.prepare-release.outputs.tag }}'
-        tag: '${{ steps.prepare-release.outputs.tag }}'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
