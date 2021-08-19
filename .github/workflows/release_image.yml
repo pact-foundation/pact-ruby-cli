@@ -20,6 +20,9 @@ jobs:
         with:
           ruby-version: 2.7
 
+      - name: Bundle install
+        run: bundle install
+
       - name: Release image
         run: script/release-workflow/run.sh
         env:
