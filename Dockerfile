@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
