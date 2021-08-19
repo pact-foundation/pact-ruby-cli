@@ -36,3 +36,9 @@ jobs:
         message: 'feat(gems): ${{ steps.update.outputs.commit_message }}'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Trigger release
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.GITHUBRELEASETOKEN }}
+        event-type: release-triggered

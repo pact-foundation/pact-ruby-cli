@@ -3,7 +3,7 @@ name: Release Docker image with updated packaging
 on:
   repository_dispatch:
     types:
-      - package-updated
+      - package-updated-disabled
 
 jobs:
   release:
