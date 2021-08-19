@@ -2,13 +2,11 @@
 
 set -eu
 
-: "${1?Please provide the image to scan}"
-
 SCRIPT_DIR=$(cd "$(dirname $0)"/.. && pwd)
 
 docker run --rm \
   -v ${PWD}/script/scan-inside-docker-container.sh:/pact/scan-inside-docker-container.sh \
   -u root \
   --entrypoint /bin/sh \
-  "$1" \
+  "${DOCKER_IMAGE_ORG_AND_NAME}:latest" \
   /pact/scan-inside-docker-container.sh
