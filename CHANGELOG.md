@@ -1,3 +1,11 @@
+<a name="0.50.0.4"></a>
+### 0.50.0.4 (2021-09-08)
+
+#### Features
+
+* **gems**
+  * updated pact (1.59.0), pact-provider-verifier (1.36.0), pact (~> 1.59)	 ([cbe6d16](/../../commit/cbe6d16))
+
 <a name="0.50.0.3"></a>
 ### 0.50.0.3 (2021-09-08)
 
