@@ -1,3 +1,12 @@
+<a name="0.50.0.10"></a>
+### 0.50.0.10 (2021-10-01)
+
+#### Features
+
+* **gems**
+  * updated pact-support (1.17.0)	 ([4b16b0a](/../../commit/4b16b0a))
+  * updated pact-support (1.16.10)	 ([4e547d4](/../../commit/4e547d4))
+
 <a name="0.50.0.9"></a>
 ### 0.50.0.9 (2021-09-30)
 
