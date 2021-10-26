@@ -1,3 +1,10 @@
+<a name="0.50.0.15"></a>
+### 0.50.0.15 (2021-10-26)
+
+#### Bug Fixes
+
+* push Docker image with latest tag as well as semantic version tag when releasing	 ([d66c00b](/../../commit/d66c00b))
+
 <a name="0.50.0.14"></a>
 ### 0.50.0.14 (2021-10-07)
 
