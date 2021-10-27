@@ -1,3 +1,11 @@
+<a name="0.50.0.16"></a>
+### 0.50.0.16 (2021-10-27)
+
+#### Features
+
+* **gems**
+  * updated pact-provider-verifier (1.36.1)	 ([e7bc6ee](/../../commit/e7bc6ee))
+
 <a name="0.50.0.15"></a>
 ### 0.50.0.15 (2021-10-26)
 
