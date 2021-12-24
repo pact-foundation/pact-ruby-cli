@@ -67,6 +67,10 @@ module Pact
     end
 
     no_commands do
+      def self.exit_on_failure?
+        true
+      end
+
       def process_argv(subcommand)
         is_help = (ARGV & HELP).any?
         argv = ARGV - [subcommand] - HELP
