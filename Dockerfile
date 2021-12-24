@@ -59,3 +59,4 @@ ADD lib ./lib
 ADD example/pacts ./example/pacts
 
 ENTRYPOINT ["/pact/entrypoint.sh"]
+CMD ["pact"]
