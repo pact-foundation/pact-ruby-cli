@@ -1,4 +1,4 @@
-FROM alpine:3
+FROM alpine:3.14
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
@@ -14,19 +14,19 @@ ADD docker/pact /usr/local/bin/pact
 # For some reason this line changes the image size from 60 to 80 MB?!?
 
 RUN apk update \
-  && apk add ruby \
-             ruby-bigdecimal \
-             ruby-bundler \
-             ruby-io-console \
-             ca-certificates \
-             libressl \
-             less \
-             git \
-  && apk add --virtual build-dependencies \
-             build-base \
-             ruby-dev \
-             libressl-dev \
-             ruby-rdoc \
+  && apk add "ruby=2.7.5-r0" \
+             "ruby-bigdecimal=2.7.5-r0" \
+             "ruby-bundler=2.2.20-r0" \
+             "ruby-io-console=2.7.5-r0" \
+             "ca-certificates=20191127-r5" \
+             "libressl=3.3.3-r0" \
+             "less=581-r1" \
+             "git=2.32.0-r0" \
+  && apk add --virtual "build-dependencies" \
+             build-base=0.5-r2 \
+             ruby-dev=2.7.5-r0 \
+             libressl-dev=3.3.3-r0 \
+             ruby-rdoc=2.7.5-r0 \
   \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
