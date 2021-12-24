@@ -1,3 +1,16 @@
+<a name="0.50.0.19"></a>
+### 0.50.0.19 (2021-12-24)
+
+#### Features
+
+* **gems**
+  * updated pact (1.61.0)	 ([47388b0](/../../commit/47388b0))
+
+#### Bug Fixes
+
+* lock versions (#39)	 ([c64aed2](/../../commit/c64aed2))
+* Dockerfile-node-14 to reduce vulnerabilities (#37)	 ([a459d6f](/../../commit/a459d6f))
+
 <a name="0.50.0.18"></a>
 ### 0.50.0.18 (2021-11-13)
 
