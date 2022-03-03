@@ -18,7 +18,7 @@ RUN apk update \
              "ruby-bigdecimal=2.7.5-r0" \
              "ruby-bundler=2.2.20-r0" \
              "ruby-io-console=2.7.5-r0" \
-             "ca-certificates=20191127-r5" \
+             "ca-certificates=20211220-r0" \
              "libressl=3.3.3-r0" \
              "less=581-r1" \
              "git=2.32.0-r0" \
