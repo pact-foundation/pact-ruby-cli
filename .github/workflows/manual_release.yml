@@ -4,6 +4,7 @@ on:
   repository_dispatch:
     types:
       - package-updated-disabled
+  workflow_dispatch:
 
 jobs:
   release:
