@@ -1,9 +1,11 @@
 <a name="0.50.0.20"></a>
 ### 0.50.0.20 (2022-03-01)
 
+**NOTE: This release drops support for Docker 19.03 (which is now EOL) by upgrading the base image to alpine:3.14.**
+
 #### Features
 
-* update base docker image to alpine:3.15	 ([2c542fd](/../../commit/2c542fd))
+* update base docker image to alpine:3.14	 ([184f8dc](/../../commit/184f8dc))
 * allow non pact commands to be specified (#40)	 ([1f88751](/../../commit/1f88751))
 
 * **gems**
