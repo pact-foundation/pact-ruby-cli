@@ -1,3 +1,20 @@
+<a name="0.50.0.20"></a>
+### 0.50.0.20 (2022-03-01)
+
+#### Features
+
+* update base docker image to alpine:3.15	 ([2c542fd](/../../commit/2c542fd))
+* allow non pact commands to be specified (#40)	 ([1f88751](/../../commit/1f88751))
+
+* **gems**
+  * updated pact-mock_service (3.10.0)	 ([257d87e](/../../commit/257d87e))
+  * updated pact (1.62.0)	 ([9268663](/../../commit/9268663))
+
+#### Bug Fixes
+
+* run bundle install with same bundler version as dockerfile (2.2.20) (#41)	 ([2524ac6](/../../commit/2524ac6))
+* specify exit_on_failure? true	 ([4ef8b97](/../../commit/4ef8b97))
+
 <a name="0.50.0.19"></a>
 ### 0.50.0.19 (2021-12-24)
 
