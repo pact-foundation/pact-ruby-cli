@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM alpine:3.14
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
@@ -19,13 +19,13 @@ RUN apk update \
              "ruby-bundler=2.2.20-r0" \
              "ruby-io-console=2.7.5-r0" \
              "ca-certificates=20211220-r0" \
-             "libressl=3.3.3-r0" \
-             "less=581-r1" \
-             "git=2.32.0-r0" \
+             "libressl" \
+             "less" \
+             "git" \
   && apk add --virtual "build-dependencies" \
              build-base=0.5-r2 \
              ruby-dev=2.7.5-r0 \
-             libressl-dev=3.3.3-r0 \
+             libressl-dev \
              ruby-rdoc=2.7.5-r0 \
   \
   && bundler -v \
