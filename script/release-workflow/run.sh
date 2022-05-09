@@ -14,6 +14,6 @@ fi
 ${script_dir}/validate.sh
 ${script_dir}/docker-build.sh
 ${script_dir}/scan.sh
-# ${script_dir}/prepare-release.sh
-# ${script_dir}/docker-push.sh
-# ${script_dir}/git-push.sh
+${script_dir}/prepare-release.sh
+${script_dir}/docker-push.sh
+${script_dir}/git-push.sh
