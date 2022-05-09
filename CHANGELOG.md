@@ -1,3 +1,19 @@
+<a name="0.50.0.22"></a>
+### 0.50.0.22 (2022-05-09)
+
+#### Features
+
+* **gems**
+  * updated pact_broker-client (1.61.1)	 ([dccb196](/../../commit/dccb196))
+  * updated pact_broker-client (1.61.0)	 ([ddc5f8c](/../../commit/ddc5f8c))
+  * updated pact_broker-client (1.60.0)	 ([cee62e1](/../../commit/cee62e1))
+
+#### Bug Fixes
+
+* 2.7.6-r0 over 2.7.5-r0 of ruby	 ([7139d0c](/../../commit/7139d0c))
+* update base image to alpine:3.14	 ([a765d0e](/../../commit/a765d0e))
+* update base image to alpine:3.15	 ([b2fbe97](/../../commit/b2fbe97))
+
 <a name="0.50.0.21"></a>
 ### 0.50.0.21 (2022-03-15)
 
