@@ -1,5 +1,6 @@
 require "pact/cli/version"
 require 'pact_broker/client/cli/broker'
+require 'pactflow/client/cli/pactflow'
 require 'pact/provider_verifier/cli/verify'
 require 'pact/mock_service/cli'
 
@@ -38,6 +39,13 @@ module Pact
     desc 'broker', 'Interact with a Pact Broker'
     def broker
       ::PactBroker::Client::CLI::Broker.start(process_argv("broker"))
+    end
+
+    if ENV["PACTFLOW_FEATURES"]
+      desc 'pactflow', 'Interact with Pactflow - beta release'
+      def pactflow
+        ::Pactflow::Client::CLI::Pactflow.start(process_argv("pactflow"))
+      end
     end
 
     desc 'verify PACT_URL ...', Pact::ProviderVerifier::CLI::Verify.commands["verify"].description
