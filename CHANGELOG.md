@@ -1,3 +1,10 @@
+<a name="0.50.0.25"></a>
+### 0.50.0.25 (2022-05-10)
+
+#### Features
+
+* add pactflow subcommand (feature toggled off for beta release)	 ([c8f31e6](/../../commit/c8f31e6))
+
 <a name="0.50.0.24"></a>
 ### 0.50.0.24 (2022-05-10)
 
