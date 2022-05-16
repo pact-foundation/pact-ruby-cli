@@ -7,7 +7,7 @@ This tool provides an amalgamated CLI of all the Pact CLI tools available in the
 You can run the following examples against a public test Pact Broker with the following credentials:
 
 ```
-export PACT_BROKER_BASE_URL="https://test.pact.dius.com.au"
+export PACT_BROKER_BASE_URL="https://test.pactflow.io"
 export PACT_BROKER_USERNAME="dXfltyFMgNOFZAxr8io9wJ37iUpY42M"
 export PACT_BROKER_PASSWORD="O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1"
 ```
