@@ -1,4 +1,4 @@
-FROM node:14.18-alpine3.15
+FROM node:14.19.1-alpine3.15
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
