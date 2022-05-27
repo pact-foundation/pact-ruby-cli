@@ -1,3 +1,15 @@
+<a name="0.50.0.27"></a>
+### 0.50.0.27 (2022-05-27)
+
+#### Features
+
+* **gems**
+  * updated pact_broker-client (1.64.0)	 ([119a2b6](/../../commit/119a2b6))
+
+#### Bug Fixes
+
+* Dockerfile-node-14 to reduce vulnerabilities (#68)	 ([6425f1a](/../../commit/6425f1a))
+
 <a name="0.50.0.26"></a>
 ### 0.50.0.26 (2022-05-10)
 
