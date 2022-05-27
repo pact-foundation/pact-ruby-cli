@@ -41,11 +41,10 @@ module Pact
       ::PactBroker::Client::CLI::Broker.start(process_argv("broker"))
     end
 
-    if ENV["PACTFLOW_FEATURES"]
-      desc 'pactflow', 'Interact with Pactflow - beta release'
-      def pactflow
-        ::Pactflow::Client::CLI::Pactflow.start(process_argv("pactflow"))
-      end
+
+    desc 'pactflow', 'Interact with Pactflow - beta release'
+    def pactflow
+      ::Pactflow::Client::CLI::Pactflow.start(process_argv("pactflow"))
     end
 
     desc 'verify PACT_URL ...', Pact::ProviderVerifier::CLI::Verify.commands["verify"].description

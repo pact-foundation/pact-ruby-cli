@@ -7,7 +7,6 @@ docker run --rm \
  -e PACT_BROKER_USERNAME \
  -e PACT_BROKER_PASSWORD \
  -e PACT_BROKER_TOKEN \
- -e PACTFLOW_FEATURES=publish-provider-contract \
   pactfoundation/pact-cli:latest \
   pactflow publish-provider-contract \
   ${PWD}/example/provider-contracts/oas.yml \
