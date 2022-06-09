@@ -36,7 +36,12 @@ module Pact
       Pact::StubService::CLI.start(process_argv("stub-service"))
     end
 
-    desc 'broker', 'Interact with a Pact Broker'
+    desc 'pact-broker', 'Interact with a Pact Broker'
+    def pact_broker
+      ::PactBroker::Client::CLI::Broker.start(process_argv("pact-broker"))
+    end
+
+    desc 'broker', 'Interact with a Pact Broker (this command is still supported by has been superseded by the pact-broker command for consistency across the various packages', hide: true
     def broker
       ::PactBroker::Client::CLI::Broker.start(process_argv("broker"))
     end
