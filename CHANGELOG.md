@@ -1,3 +1,10 @@
+<a name="0.50.0.28"></a>
+### 0.50.0.28 (2022-06-09)
+
+#### Features
+
+* add pact-broker subcommand (to be used in preference to broker) so that the pact-broker command are invoked consistently across the gem, pact-ruby-standalone and Docker CLIs	 ([60d80c6](/../../commit/60d80c6))
+
 <a name="0.50.0.27"></a>
 ### 0.50.0.27 (2022-05-27)
 
