@@ -46,8 +46,7 @@ module Pact
       ::PactBroker::Client::CLI::Broker.start(process_argv("broker"))
     end
 
-
-    desc 'pactflow', 'Interact with Pactflow - beta release'
+    desc 'pactflow', 'Interact with Pactflow'
     def pactflow
       ::Pactflow::Client::CLI::Pactflow.start(process_argv("pactflow"))
     end
@@ -72,7 +71,7 @@ module Pact
       ::PactBroker::Client::CLI::Broker.start(process_argv(""))
     end
 
-    desc "version", "Print the version"
+    desc "version", "Print the version of the CLI"
     def version
       require 'pact/cli/version'
       puts Pact::Cli::VERSION
