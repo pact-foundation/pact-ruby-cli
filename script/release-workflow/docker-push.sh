@@ -11,4 +11,4 @@ set -euo >/dev/null
 
 docker tag ${DOCKER_IMAGE_ORG_AND_NAME}:latest ${DOCKER_IMAGE_ORG_AND_NAME}:${TAG}
 docker push ${DOCKER_IMAGE_ORG_AND_NAME}:${TAG}
-docker push ${DOCKER_IMAGE_ORG_AND_NAME}:latest
+# docker push ${DOCKER_IMAGE_ORG_AND_NAME}:latest disable for one release
