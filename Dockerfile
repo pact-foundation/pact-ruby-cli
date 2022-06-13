@@ -57,6 +57,8 @@ ADD docker/entrypoint.sh $HOME/entrypoint.sh
 ADD bin ./bin
 ADD lib ./lib
 ADD example/pacts ./example/pacts
+ADD example/consumer-contracts ./example/consumer-contracts
+ADD example/provider-contracts ./example/provider-contracts
 
 ENTRYPOINT ["/pact/entrypoint.sh"]
 CMD ["pact"]

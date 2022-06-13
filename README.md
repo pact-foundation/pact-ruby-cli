@@ -14,7 +14,9 @@ export PACT_BROKER_PASSWORD="O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1"
 
 The `$(date +%s)` in the examples is just to generate a pseudo random GIT_COMMIT.
 
-If you are using a Pact Broker with bearer token authentication (eg. Pactflow), then set `PACT_BROKER_TOKEN` instead of the username and password.
+All commands prefixed with pact-broker can be used with the OSS Pact Broker and Pactflow. Commands prefixed with pactflow can only be used with Pactflow.
+
+Authentication using a bearer token can be specified using the environment variable `$PACT_BROKER_TOKEN` or the -k or --broker-token parameters. This bearer token authentication is used by Pactflow and is not available in the OSS Pact Broker, which only supports basic auth.
 
 ### Help
 
@@ -26,6 +28,7 @@ Commands:
   verify PACT_URL ...             # Verify pact(s) against a provider. S...
   version                         # Print the version
   help [COMMAND]                  # Describe available commands or one s...
+  pactflow                        # Interact with Pactflow
 
 $ docker run --rm pactfoundation/pact-cli:latest pact-broker help
 Commands:
@@ -70,6 +73,11 @@ docker run --rm  \
   /pact/example/pacts \
   --consumer-app-version fake-git-sha-for-demo-$(date +%s)
 ```
+
+1. `/pact/example/consumer_contracts/pact_bdc_v1.0.0.json` - ok
+2. `/pact/example/consumer_contracts/pact_bdc_v1.0.1.json` - adds price expectation in response payloads
+3. `/pact/example/consumer_contracts/pact_bdc_v1.0.2.json` - add new field expectation visibility
+4. `/pact/example/consumer_contracts/pact_bdc_v1.0.3.json` - updates to call new endpoint `/products`
 
 ### Verify pacts
 
@@ -132,6 +140,69 @@ docker run -dit \
 The `-it` is required if you want the container to respond to a `ctl+c`. The container takes an unexpectedly long time to shut down when using `docker stop`. This is an open issue.
 
 See https://github.com/pact-foundation/pact-mock_service#mock-service-usage for all options.
+
+### Publish Provider Contract
+
+Publish provider contract to Pactflow
+
+See the [docs](https://docs.pactflow.io/docs/bi-directional-contract-testing/contracts/oas#publishing-the-provider-contract--results-to-pactflow) for more info
+
+```sh
+Usage:
+docker run --rm  -w /app \
+ -v ${PWD}:/app \
+      -e PACT_BROKER_BASE_URL \
+      -e PACT_BROKER_TOKEN \
+      pactfoundation/pact-cli:latest \
+      pactflow publish-provider-contract CONTRACT_FILE \
+          --broker-token=BROKER_TOKEN
+          --broker-base-url=BROKER_BASE_URL
+          --provider PROVIDER \
+          --provider-app-version PROVIDER_APP_VERSION \
+          --branch BRANCH \
+          --content-type CONTENT_TYPE \
+          --verification-exit-code=EXIT_CODE \
+          --verification-results REPORT_PATH \
+          --verification-results-content-type REPORT_CONTENT_TYPE \
+          --verifier VERIFIER
+```
+
+#### Demo only - publish an example oas from data baked into the docker image
+
+```sh
+docker run --rm  \
+  -e PACT_BROKER_BASE_URL  \
+  -e PACT_BROKER_TOKEN \
+  pactfoundation/pact-cli:latest \
+  pactflow publish-provider-contract \
+  /pact/example/provider-contracts/products_v1.0.0.yml \
+  --provider "Example OAS Provider" \
+  --provider-app-version fake-git-sha-for-demo-$(date +%s) \
+  --branch "main" \
+  --content-type application/yaml \
+  --verification-success \
+  --verification-results /pact/example/provider-contracts/verification-results.txt \
+  --verification-results-content-type text/plain \
+  --verifier "custom"
+```
+
+You can use the following examples
+
+1. `products_v1.0.0.yml` - original canonical example - [https://docs.pactflow.io/oas/products](https://docs.pactflow.io/oas/products)
+2. `products_v1.0.1.yml` - remove price
+3. `products_v1.0.2.yml` - remove name
+4. `products_v1.0.3.yml` - rename path /product to /products
+5. `products_v1.0.4.yml` - support /product and /products
+6. `products_v1.0.5.yml` - remove /product
+
+along with the following consumer contracts.
+
+These rely on the provider being named `pactflow_bdc_demo_provider`
+
+1. `/pact/example/consumer_contracts/pact_bdc_v1.0.0.json` - original canonical example [https://github.com/pactflow/example-consumer](https://github.com/pactflow/example-consumer/blob/master/src/api.pact.spec.js)
+2. `/pact/example/consumer_contracts/pact_bdc_v1.0.1.json` - adds price expectation in response payloads
+3. `/pact/example/consumer_contracts/pact_bdc_v1.0.2.json` - add new field expectation visibility
+4. `/pact/example/consumer_contracts/pact_bdc_v1.0.3.json` - updates to call new endpoint `/products`
 
 ### Using a custom certificate
 
