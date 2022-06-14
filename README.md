@@ -74,11 +74,6 @@ docker run --rm  \
   --consumer-app-version fake-git-sha-for-demo-$(date +%s)
 ```
 
-1. `/pact/example/consumer_contracts/pact_bdc_v1.0.0.json` - ok
-2. `/pact/example/consumer_contracts/pact_bdc_v1.0.1.json` - adds price expectation in response payloads
-3. `/pact/example/consumer_contracts/pact_bdc_v1.0.2.json` - add new field expectation visibility
-4. `/pact/example/consumer_contracts/pact_bdc_v1.0.3.json` - updates to call new endpoint `/products`
-
 ### Verify pacts
 
 See the example [docker-compose-verify.yml](https://github.com/pact-foundation/pact-ruby-cli/blob/master/docker-compose-verify.yml)
@@ -188,21 +183,23 @@ docker run --rm  \
 
 You can use the following examples
 
-1. `products_v1.0.0.yml` - original canonical example - [https://docs.pactflow.io/oas/products](https://docs.pactflow.io/oas/products)
-2. `products_v1.0.1.yml` - remove price
-3. `products_v1.0.2.yml` - remove name
-4. `products_v1.0.3.yml` - rename path /product to /products
-5. `products_v1.0.4.yml` - support /product and /products
-6. `products_v1.0.5.yml` - remove /product
+- They paths included below are for referencing in the Docker ClI tool for demo purposes, or in the GH [repo](https://github.com/pact-foundation/pact-ruby-cli/tree/master/example)
+
+1. `/pact/example/provider-contracts/`products_v1.0.0.yml` - original canonical example - [https://docs.pactflow.io/oas/products](https://docs.pactflow.io/oas/products)
+2. `/pact/example/provider-contracts/`products_v1.0.1.yml` - remove price
+3. `/pact/example/provider-contracts/`products_v1.0.2.yml` - remove name
+4. `/pact/example/provider-contracts/`products_v1.0.3.yml` - rename path /product to /products
+5. `/pact/example/provider-contracts/`products_v1.0.4.yml` - support /product and /products
+6. `/pact/example/provider-contracts/`products_v1.0.5.yml` - remove /product
 
 along with the following consumer contracts.
 
 These rely on the provider being named `pactflow_bdc_demo_provider`
 
-1. `/pact/example/consumer_contracts/pact_bdc_v1.0.0.json` - original canonical example [https://github.com/pactflow/example-consumer](https://github.com/pactflow/example-consumer/blob/master/src/api.pact.spec.js)
-2. `/pact/example/consumer_contracts/pact_bdc_v1.0.1.json` - adds price expectation in response payloads
-3. `/pact/example/consumer_contracts/pact_bdc_v1.0.2.json` - add new field expectation visibility
-4. `/pact/example/consumer_contracts/pact_bdc_v1.0.3.json` - updates to call new endpoint `/products`
+1. `/pact/example/consumer-contracts/pact_bdc_v1.0.0.json` - original canonical example [https://github.com/pactflow/example-consumer](https://github.com/pactflow/example-consumer/blob/master/src/api.pact.spec.js)
+2. `/pact/example/consumer-contracts/pact_bdc_v1.0.1.json` - adds price expectation in response payloads
+3. `/pact/example/consumer-contracts/pact_bdc_v1.0.2.json` - add new field expectation visibility
+4. `/pact/example/consumer-contracts/pact_bdc_v1.0.3.json` - updates to call new endpoint `/products`
 
 ### Using a custom certificate
 
