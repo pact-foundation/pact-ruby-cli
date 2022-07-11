@@ -23,7 +23,7 @@ RUN apk update \
              "less" \
              "git" \
   && apk add --virtual "build-dependencies" \
-             build-base=0.5-r2 \
+             build-base=0.5-r3 \
              ruby-dev=2.7.6-r0 \
              libressl-dev \
              ruby-rdoc=2.7.6-r0 \
