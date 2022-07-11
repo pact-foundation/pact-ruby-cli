@@ -1,3 +1,17 @@
+<a name="0.50.0.30"></a>
+### 0.50.0.30 (2022-07-11)
+
+#### Features
+
+* **gems**
+  * updated pact_broker-client (1.65.0)	 ([2902015](/../../commit/2902015))
+  * updated pact-support (1.18.0)	 ([2d7f760](/../../commit/2d7f760))
+
+#### Bug Fixes
+
+* **deps**
+  * update build-base from 0.5-r2 to 0.5-r3	 ([1f2ea85](/../../commit/1f2ea85))
+
 <a name="0.50.0.29"></a>
 ### 0.50.0.29 (2022-06-09)
 
