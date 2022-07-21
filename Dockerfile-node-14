@@ -1,4 +1,4 @@
-FROM node:14.19.2-alpine3.15
+FROM node:fermium-alpine3.15
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
