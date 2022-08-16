@@ -24,7 +24,7 @@ GEM
     dig_rb (1.0.1)
     expgen (0.1.1)
       parslet
-    faraday (1.10.0)
+    faraday (1.10.1)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -93,7 +93,7 @@ GEM
       rack-reverse-proxy
       rspec (~> 3.5)
       rspec_junit_formatter (~> 0.3)
-    pact-support (1.18.0)
+    pact-support (1.18.1)
       awesome_print (~> 1.9)
       diff-lcs (~> 1.4)
       expgen (~> 0.1)
@@ -109,7 +109,7 @@ GEM
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    rack (2.2.3.1)
+    rack (2.2.4)
     rack-proxy (0.7.2)
       rack
     rack-reverse-proxy (0.12.0)
