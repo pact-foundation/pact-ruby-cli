@@ -13,7 +13,7 @@ RUN apk update \
              "ruby-bigdecimal=3.0.4-r0" \
              "ruby-bundler=2.2.33-r0" \
              "ruby-io-console=3.0.4-r0" \
-             "ca-certificates=20211220-r0" \
+             "ca-certificates=20220614-r0" \
              "libressl" \
              "less" \
              "git" \
