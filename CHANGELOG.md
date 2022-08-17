@@ -1,3 +1,20 @@
+<a name="0.50.0.31"></a>
+### 0.50.0.31 (2022-08-17)
+
+#### Features
+
+* **gems**
+  * updated pact-support (1.18.1)	 ([10dc232](/../../commit/10dc232))
+
+* upgrade from ruby 2.7.6 to 3.0.4	 ([34fd51f](/../../commit/34fd51f))
+
+#### Bug Fixes
+
+* **deps**
+  * update ca-certificates in Docker base image	 ([bc26c53](/../../commit/bc26c53))
+
+* Dockerfile to reduce vulnerabilities	 ([56992e6](/../../commit/56992e6))
+
 <a name="0.50.0.30"></a>
 ### 0.50.0.30 (2022-07-11)
 
