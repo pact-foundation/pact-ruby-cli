@@ -13,6 +13,7 @@ PATH
       pact-mock_service
       pact-provider-verifier
       pact_broker-client (~> 1.28)
+      rack-test (>= 0.6.3, < 2.0.0)
 
 GEM
   remote: https://rubygems.org/

@@ -46,6 +46,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pact_broker-client", "~> 1.28"
   spec.add_dependency "json", "~>2.3" # must match native lib install in the Dockerfile
 
+  # Locking this until we have given rack-test 3.0 a good shake out in pure Ruby
+  spec.add_dependency "rack-test", ">= 0.6.3", "< 2.0.0"
+
   spec.add_development_dependency "bump", "~> 0.9"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
