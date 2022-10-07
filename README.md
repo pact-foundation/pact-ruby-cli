@@ -144,6 +144,32 @@ docker run --rm \
 
 You can also set `SSL_CERT_DIR` and mount the directory instead of the file.
 
+### Shell access inside Docker container
+
+To meet with [Docker consistency rules](https://github.com/docker-library/official-images#consistency) `sh` access is provided, _NOTE:_ `bash` is not installed in the container
+
+```
+$ docker run --rm pactfoundation/pact-cli sh -c 'ls'
+Gemfile
+Gemfile.lock
+bin
+entrypoint.sh
+example
+lib
+pact-cli.gemspec
+```
+
+```
+$ docker run --rm pactfoundation/pact-cli ls
+Gemfile
+Gemfile.lock
+bin
+entrypoint.sh
+example
+lib
+pact-cli.gemspec
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/pact-foundation/pact-ruby-cli.
