@@ -1,19 +1,18 @@
 name: Release Docker image with updated packaging
 
 on:
-  repository_dispatch:
-    types:
-      - package-updated-disabled
   workflow_dispatch:
+    inputs:
+      release:
+        description: Release number
+        required: true
+        type: number
 
 jobs:
   release:
     runs-on: ubuntu-latest
 
     steps:
-
-    - run: echo "Please set a release number" && exit 1
-      if: ${{ github.event.client_payload.release == '' }}
 
     - uses: actions/checkout@v2
       with:
@@ -32,7 +31,7 @@ jobs:
       id: prepare-release
       run: script/workflows/prepare-release.sh
       env:
-        RELEASE: ${{ github.event.client_payload.release }}
+        RELEASE: ${{ inputs.release }}
 
     - name: Commit and push version and changelog
       uses: EndBug/add-and-commit@v4
