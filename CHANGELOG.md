@@ -1,3 +1,10 @@
+<a name="0.50.0.32"></a>
+### 0.50.0.32 (2022-10-18)
+
+#### Bug Fixes
+
+* branch detection fix in response git cve fix (#79)	 ([ca474f9](/../../commit/ca474f9))
+
 <a name="0.50.0.31"></a>
 ### 0.50.0.31 (2022-08-17)
 
