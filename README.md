@@ -40,7 +40,7 @@ Commands:
 
 ### Publish pacts
 
-You can clone `git@github.com:pact-foundation/pact-ruby-cli.git` and run the following from the root directory.
+You can clone `git@github.com:pact-foundation/pact-ruby-cli.git` (https://github.com/pact-foundation/pact-ruby-cli) and run the following from the root directory.
 
 ```
 docker run --rm \
