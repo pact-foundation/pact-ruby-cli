@@ -21,6 +21,7 @@ jobs:
         ruby-version: '2.6'
 
     - run: gem install bundler -v 2.0.2
+    - run: bundle install
 
     - id: update
       run: script/workflows/update.sh
