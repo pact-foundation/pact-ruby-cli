@@ -1,0 +1,49 @@
+name: Prepare next release and publish Docker image
+
+on:
+  workflow_dispatch:
+    inputs:
+      increment:
+        description: Increment
+        default: minor
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.7'
+
+    - id: prepare-release
+      name: Update version and generate changelog
+      run: script/workflows/prepare-release.sh
+      env:
+        INCREMENT: ${{ inputs.increment }}
+
+    - name: Commit and push version and changelog
+      uses: EndBug/add-and-commit@v4
+      with:
+        add: lib/pact/cli/version.rb CHANGELOG.md
+        author_name: Beth Skurrie via Github Action
+        author_email: beth@bethesque.com
+        message: 'chore(release): version ${{ steps.prepare-release.outputs.tag }}'
+        tag: '${{ steps.prepare-release.outputs.tag }}'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Release image
+      run: script/release-workflow/run.sh
+      env:
+        DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+        DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+        CUSTOM_TAG: ${{ github.event.client_payload.tag }}
