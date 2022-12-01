@@ -7,7 +7,7 @@ gem_version_from_gemfile_lock() {
 }
 
 gem_version=$(ruby -I lib -e "require 'pact/cli/version.rb'; puts Pact::Cli::VERSION")
-existing_tags=$(wget -q https://registry.hub.docker.com/v1/repositories/${DOCKER_IMAGE_ORG_AND_NAME}/tags -O - | jq -r .[].name | sed 's/-[0-9]$/.1/g')
+existing_tags=$(git tag)
 existing_release_numbers_for_current_gem_version=$(echo "$existing_tags" | grep "${gem_version}\." | sed 's/'${gem_version}'\.//g' | grep -E "^[0-9]+$" | cat)
 
 if [ -n "${existing_release_numbers_for_current_gem_version}" ]; then
