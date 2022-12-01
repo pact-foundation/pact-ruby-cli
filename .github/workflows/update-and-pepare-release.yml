@@ -1,6 +1,6 @@
 # TODO abort if there are no changes to the Gemfile.
 
-name: Update gems and release Docker image
+name: Update gems and prepare to release Docker image
 
 on:
   repository_dispatch:
