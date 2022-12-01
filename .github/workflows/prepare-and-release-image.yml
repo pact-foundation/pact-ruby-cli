@@ -24,6 +24,9 @@ jobs:
       with:
         ruby-version: '2.7'
 
+    - run: gem install bundler -v 2.0.2
+    - run: bundle install
+
     - id: prepare-release
       name: Update version and generate changelog
       run: script/workflows/prepare-release.sh
