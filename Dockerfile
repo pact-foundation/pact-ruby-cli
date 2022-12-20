@@ -2,6 +2,8 @@ FROM alpine:3.15
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
+ARG PLUGIN_CLI_VERSION=0.0.2
+
 ENV NOKOGIRI_USE_SYSTEM_LIBRARIES=1
 ENV BUNDLE_SILENCE_ROOT_WARNING=1
 
@@ -52,6 +54,9 @@ ADD docker/entrypoint.sh $HOME/entrypoint.sh
 ADD bin ./bin
 ADD lib ./lib
 ADD example/pacts ./example/pacts
+
+ADD https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v${PLUGIN_CLI_VERSION}/pact-plugin-cli-linux-x86_64.gz ./bin
+RUN gunzip -fc ./bin/pact-plugin-cli-linux-x86_64.gz > ./bin/pact-plugin-cli && chmod +x ./bin/pact-plugin-cli
 
 ENTRYPOINT ["/pact/entrypoint.sh"]
 CMD ["pact"]
