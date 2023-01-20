@@ -40,5 +40,5 @@ jobs:
     - name: Trigger release
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets.GITHUBRELEASETOKEN }}
+        token: ${{ secrets.GHTOKENFORPACTCLIRELEASE }}
         event-type: release-triggered
