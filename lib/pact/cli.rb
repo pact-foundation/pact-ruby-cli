@@ -46,7 +46,7 @@ module Pact
       ::PactBroker::Client::CLI::Broker.start(process_argv("broker"))
     end
 
-    desc 'pactflow', 'Interact with Pactflow'
+    desc 'pactflow', 'Interact with PactFlow'
     def pactflow
       ::Pactflow::Client::CLI::Pactflow.start(process_argv("pactflow"))
     end

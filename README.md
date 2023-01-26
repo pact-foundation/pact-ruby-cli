@@ -14,7 +14,7 @@ export PACT_BROKER_PASSWORD="O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1"
 
 The `$(date +%s)` in the examples is just to generate a pseudo random GIT_COMMIT.
 
-If you are using a Pact Broker with bearer token authentication (eg. Pactflow), then set `PACT_BROKER_TOKEN` instead of the username and password.
+If you are using a Pact Broker with bearer token authentication (eg. PactFlow), then set `PACT_BROKER_TOKEN` instead of the username and password.
 
 ### Help
 
