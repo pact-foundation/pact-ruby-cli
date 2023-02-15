@@ -16,6 +16,11 @@ The `$(date +%s)` in the examples is just to generate a pseudo random GIT_COMMIT
 
 If you are using a Pact Broker with bearer token authentication (eg. PactFlow), then set `PACT_BROKER_TOKEN` instead of the username and password.
 
+### Docker gotchas
+
+* If you are publishing pacts, don't forget to mount your pacts into the docker container using the `-v` flag, documented in the example below.
+* If you are connecting to a Pact Broker that you are running on `localhost`, you will need to add `--network="host"` to the docker command so that it resolves `localhost` to your machine, rather than to the container itself.
+
 ### Help
 
 ```
