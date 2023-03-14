@@ -2,9 +2,9 @@
 
 # Script to trigger release of gem via the pact-foundation/release-gem action
 # Requires a Github API token with repo scope stored in the
-# environment variable GITHUB_ACCESS_TOKEN_FOR_PF_RELEASES
+# environment variable GITHUB_TOKEN
 
-: "${GITHUB_ACCESS_TOKEN_FOR_PF_RELEASES:?Please set environment variable GITHUB_ACCESS_TOKEN_FOR_PF_RELEASES}"
+: "${GITHUB_TOKEN:?Please set environment variable GITHUB_TOKEN}"
 
 if [ -n "$1" ]; then
   name="\"${1}\""
@@ -27,12 +27,12 @@ fi
 repository_slug=$(git remote get-url origin | cut -d':' -f2 | sed 's/\.git//')
 
 output=$(curl -v https://api.github.com/repos/${repository_slug}/dispatches \
-      -H 'Accept: application/vnd.github.everest-preview+json' \
-      -H "Authorization: Bearer $GITHUB_ACCESS_TOKEN_FOR_PF_RELEASES" \
+      -H 'Accept: application/vnd.github+json' \
+      -H "Authorization: Bearer $GITHUB_TOKEN" \
       -d "{\"event_type\": \"gem-released\", \"client_payload\": {\"name\": ${name}, \"version\" : ${version}, \"increment\" : ${increment}}}" 2>&1)
 
-if  ! echo "${output}" | grep "HTTP\/1.1 204" > /dev/null; then
-  echo "$output" | sed  "s/${GITHUB_ACCESS_TOKEN_FOR_PF_RELEASES}/********/g"
+if  ! echo "${output}" | grep "HTTP\/.* 204" > /dev/null; then
+  echo "$output" | sed  "s/${GITHUB_TOKEN}/********/g"
   echo "Failed to trigger release"
   exit 1
 else
