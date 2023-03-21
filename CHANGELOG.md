@@ -1,10 +1,3 @@
-<a name="0.52.0.0"></a>
-### 0.52.0.0 (2023-03-21)
-
-#### Bug Fixes
-
-* update base image to fix vulnerabilities	 ([f3a33f8](/../../commit/f3a33f8))
-
 <a name="0.51.0.0"></a>
 ### 0.51.0.0 (2022-12-02)
 
