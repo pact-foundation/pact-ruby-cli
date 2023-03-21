@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/bethesque/conventional-changelog-ruby.git
-  revision: 303b4277a64371d01e43754dfd5f47eee42ccd79
-  ref: 303b4277a64371d01e43754dfd5f47eee42ccd79
+  revision: ca6b790c3c8079665dee6fe05685e4ab1be0ad6f
+  ref: feat/pact-foundation
   specs:
     conventional-changelog (1.3.0)
 
