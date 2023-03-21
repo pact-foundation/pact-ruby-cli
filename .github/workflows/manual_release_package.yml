@@ -18,14 +18,7 @@ jobs:
       with:
         fetch-depth: 0
 
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: '2.6'
-
-    - name: Install gems
-      run: |
-        gem install bundler -v 2.0.2
-        bundle install
+    - uses: ruby/setup-ruby@v1
 
     - name: Prepare release
       id: prepare-release
