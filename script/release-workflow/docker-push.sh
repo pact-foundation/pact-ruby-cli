@@ -9,6 +9,7 @@ set -euo >/dev/null
 #   docker push ${DOCKER_IMAGE_ORG_AND_NAME}:latest
 # fi
 
-docker tag ${DOCKER_IMAGE_ORG_AND_NAME}:latest ${DOCKER_IMAGE_ORG_AND_NAME}:${TAG}
-docker push ${DOCKER_IMAGE_ORG_AND_NAME}:${TAG}
-docker push ${DOCKER_IMAGE_ORG_AND_NAME}:latest
+docker buildx build --platform=linux/amd64,linux/arm64,linux/arm \
+    --output=type=image,push=true \
+    -t ${DOCKER_IMAGE_ORG_AND_NAME}:latest \
+    -t ${DOCKER_IMAGE_ORG_AND_NAME}:${TAG} .
