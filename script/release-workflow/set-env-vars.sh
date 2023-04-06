@@ -2,7 +2,7 @@
 
 set -e
 
-export DOCKER_IMAGE_ORG_AND_NAME=you54f/pact-cli
+export DOCKER_IMAGE_ORG_AND_NAME=pact-foundation/pact-cli
 
 if [ -n "${CUSTOM_TAG:-}" ]; then
   export TAG=$CUSTOM_TAG

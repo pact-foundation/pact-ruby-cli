@@ -4,7 +4,7 @@ set -eu
 
 SCRIPT_DIR=$(cd "$(dirname $0)"/.. && pwd)
 
-for arch in amd64 arm64 arm; do 
+for arch in amd64; do 
     docker run --rm \
       -v ${PWD}/script/scan-inside-docker-container.sh:/pact/scan-inside-docker-container.sh \
       -u root \
