@@ -1,0 +1,39 @@
+env:
+  DOCKER_IMAGE_ORG_AND_NAME: you54f/pact-cli
+
+linux-arm64-task: 
+  timeout_in: 90m
+  compute_engine_instance:
+    image_project: cirrus-images
+    image: family/docker-builder-arm64
+    architecture: arm64
+    platform: linux
+    cpu: 4
+    memory: 16G
+  depends_on:
+    - build
+    - test
+
+macosx-arm64-task: 
+  macos_instance:
+    image: ghcr.io/cirruslabs/macos-ventura-base:latest
+  depends_on:
+    - build
+    - test
+
+build_task:
+  script:
+    - docker build . -t ${DOCKER_IMAGE_ORG_AND_NAME}
+
+test_task:
+  script:
+    - docker run --rm ${DOCKER_IMAGE_ORG_AND_NAME}:latest
+    - docker run --rm ${DOCKER_IMAGE_ORG_AND_NAME}:latest version
+    - docker run --rm ${DOCKER_IMAGE_ORG_AND_NAME}:latest --help
+    - docker run --rm ${DOCKER_IMAGE_ORG_AND_NAME}:latest mock-service --help
+    - docker run --rm ${DOCKER_IMAGE_ORG_AND_NAME}:latest pact-broker --help
+    - docker run --rm ${DOCKER_IMAGE_ORG_AND_NAME}:latest pactflow --help
+    - docker run --rm ${DOCKER_IMAGE_ORG_AND_NAME}:latest publish --help
+    - docker run --rm ${DOCKER_IMAGE_ORG_AND_NAME}:latest stub-service --help
+    - docker run --rm ${DOCKER_IMAGE_ORG_AND_NAME}:latest verify --help
+
