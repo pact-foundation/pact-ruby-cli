@@ -1,5 +1,5 @@
 env:
-  DOCKER_IMAGE_ORG_AND_NAME: you54f/pact-cli
+  DOCKER_IMAGE_ORG_AND_NAME: pactfoundation/pact-cli
   TAG: $CIRRUS_TAG
 
 linux_arm64_build_test_task: 
