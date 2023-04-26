@@ -1,3 +1,10 @@
+<a name="0.51.0.2"></a>
+### 0.51.0.2 (2023-04-26)
+
+#### Bug Fixes
+
+* Dockerfile to reduce vulnerabilities (#97)	 ([144df18](/../../commit/144df18))
+
 <a name="0.51.0.1"></a>
 ### 0.51.0.1 (2023-03-21)
 
