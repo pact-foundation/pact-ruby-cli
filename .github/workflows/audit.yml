@@ -1,0 +1,22 @@
+name: Audit
+
+on:
+  workflow_dispatch:
+  push:
+  schedule:
+    - cron: 0 0 * * 4 # Midnight Wednesday
+
+jobs:
+  audit:
+    name: 💥 audit
+    strategy:
+      fail-fast: false
+      matrix:
+        DOCKER_TARGET_PLATFORM: [linux/amd64]
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_TARGET_PLATFORM: ${{ matrix.DOCKER_TARGET_PLATFORM }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Audit Docker image for ${{ matrix.DOCKER_TARGET_PLATFORM }}
+        run: ./script/release-workflow/audit.sh
