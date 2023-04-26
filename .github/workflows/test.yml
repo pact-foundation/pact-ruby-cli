@@ -17,6 +17,9 @@ jobs:
       - name: Integration tests
         run: script/test.sh
 
+      - name: Scan
+        run: script/scan.sh pactfoundation/pact-cli
+
   test-node:
     runs-on: "ubuntu-latest"
     strategy:
@@ -36,3 +39,6 @@ jobs:
         run: script/test-node.sh
         env:
           NODE_VERSION: ${{ matrix.node }}
+
+      - name: Scan
+        run: script/scan.sh pactfoundation/pact-cli:latest-node${{ matrix.node }}
