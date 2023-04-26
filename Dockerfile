@@ -11,7 +11,7 @@ ADD docker/pact /usr/local/bin/pact
 RUN apk update \
   && apk add ruby=3.1.4-r0 \
              ruby-bigdecimal=3.1.4-r0 \
-             ruby-bundler=2.3.26-r0 \
+             ruby-bundler=2.4.12-r0 \
              ruby-io-console=3.1.4-r0 \
              ca-certificates=20220614-r4 \
              libressl \

@@ -108,7 +108,7 @@ GEM
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    rack (2.2.6.4)
+    rack (2.2.7)
     rack-proxy (0.7.6)
       rack
     rack-reverse-proxy (0.12.0)
@@ -122,12 +122,12 @@ GEM
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
       rspec-mocks (~> 3.12.0)
-    rspec-core (3.12.1)
+    rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
-    rspec-expectations (3.12.2)
+    rspec-expectations (3.12.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
-    rspec-mocks (3.12.4)
+    rspec-mocks (3.12.5)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-support (3.12.0)
@@ -155,4 +155,4 @@ DEPENDENCIES
   rspec (~> 3.0)
 
 BUNDLED WITH
-   2.3.26
+   2.4.12
