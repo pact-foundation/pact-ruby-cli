@@ -8,7 +8,7 @@ jobs:
     env:
       DOCKER_IMAGE_ORG_AND_NAME: pactfoundation/pact-cli
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # - name: Login to Docker Hub
       #   run: script/release-workflow/docker-login.sh
@@ -18,3 +18,23 @@ jobs:
 
       - name: Integration tests
         run: script/test.sh
+
+  test-node:
+    runs-on: "ubuntu-latest"
+    strategy:
+      matrix:
+        node: [ 14, 15, 16, 17, 18, 19, 20 ]
+    steps:
+      - uses: actions/checkout@v2
+      
+
+      - name: Login to Docker Hub
+        run: script/release-workflow/docker-login.sh
+        env:
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Integration tests
+        run: script/test-node.sh
+        env:
+          NODE_VERSION: ${{ matrix.node }}

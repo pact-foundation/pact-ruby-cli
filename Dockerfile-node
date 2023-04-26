@@ -1,4 +1,5 @@
-FROM node:14.19.2-alpine3.15
+ARG NODE_VERSION=14
+FROM node:${NODE_VERSION}-alpine3.17
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
@@ -28,6 +29,7 @@ RUN apk update \
              libressl-dev \
              ruby-rdoc \
   \
+  && gem install bundler -v 2.4.12 \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
@@ -48,10 +50,9 @@ ADD pact-cli.gemspec .
 ADD Gemfile .
 ADD Gemfile.lock .
 ADD lib/pact/cli/version.rb ./lib/pact/cli/version.rb
-RUN bundle config set without 'test development' \
-      && bundle install \
-      && find /usr/lib/ruby/gems/2.7.0/gems -name Gemfile.lock -maxdepth 2 -delete
+RUN  bundle install --without test development --deployment true \
+      && find /usr/lib/ruby/gems/3.1.0/gems -name Gemfile.lock -maxdepth 2 -delete
 ADD docker/entrypoint.sh $HOME/entrypoint.sh
 ADD bin ./bin
 ADD lib ./lib
-CMD ["pact"]
+ENTRYPOINT ["pact"]
