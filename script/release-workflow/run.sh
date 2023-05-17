@@ -12,7 +12,6 @@ fi
 . ${script_dir}/set-env-vars.sh
 
 ${script_dir}/validate.sh
-${script_dir}/docker-prepare.sh
 ${script_dir}/docker-build.sh
 ${script_dir}/scan.sh
 ${script_dir}/prepare-release.sh
