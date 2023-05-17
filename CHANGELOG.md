@@ -1,3 +1,11 @@
+<a name="0.51.0.3"></a>
+### 0.51.0.3 (2023-05-17)
+
+#### Features
+
+* **gems**
+  * updated pact-mock_service (3.11.1), pact_broker-client (1.67.0)	 ([ce39c2b](/../../commit/ce39c2b))
+
 <a name="0.51.0.2"></a>
 ### 0.51.0.2 (2023-04-26)
 
