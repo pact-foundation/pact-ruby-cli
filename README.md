@@ -2,6 +2,47 @@
 
 This tool provides an amalgamated CLI of all the Pact CLI tools available in the Pact Ruby implementation (publish and verify pacts, and interact with the Pact Broker). While it is functionally the same as the [pact-ruby-standalone](https://github.com/pact-foundation/pact-ruby-standalone) it is packaged as a Docker container and a single top level entrypoint (`pact`).
 
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/pact-foundation/pact-msw-adapter/graphs/commit-activity)
+
+[![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg)
+[![macOS](https://svgshare.com/i/ZjP.svg)](https://svgshare.com/i/ZjP.svg)
+[![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
+
+[![Build and test](https://github.com/pact-foundation/pact-ruby-cli/actions/workflows/test.yml/badge.svg)](https://github.com/pact-foundation/pact-ruby-cli/actions/workflows/test.yml)
+[![Audit](https://github.com/pact-foundation/pact-ruby-cli/actions/workflows/audit.yml/badge.svg)](https://github.com/pact-foundation/pact-ruby-cli/actions/workflows/audit.yml)
+[![Release](https://github.com/pact-foundation/pact-ruby-cli/actions/workflows/release_image.yml/badge.svg)](https://github.com/pact-foundation/pact-ruby-cli/actions/workflows/release_image.yml)
+
+[![pulls](https://badgen.net/docker/pulls/pactfoundation/pact-cli?icon=docker&label=pulls)](https://hub.docker.com/r/pactfoundation/pact-cli)
+[![stars](https://badgen.net/docker/stars/pactfoundation/pact-cli?icon=docker&label=stars)](https://hub.docker.com/r/pactfoundation/pact-cli)
+
+[![size: amd64](https://badgen.net/docker/size/pactfoundation/pact-cli/latest-multi/amd64?icon=docker&label=size%3Aamd64)](https://hub.docker.com/r/pactfoundation/pact-cli)
+[![size: arm64](https://badgen.net/docker/size/pactfoundation/pact-cli/latest-multi/arm64?icon=docker&label=size%3Aarm64)](https://hub.docker.com/r/pactfoundation/pact-cli)
+[![size: arm](https://badgen.net/docker/size/pactfoundation/pact-cli/latest-multi/arm?icon=docker&label=size%3Aarm)](https://hub.docker.com/r/pactfoundation/pact-cli)
+
+## Platforms
+
+### Single platform images
+
+By default, vanilla tags, are built only for `amd64`
+
+- `--platform=linux/amd64`
+
+  ```sh
+  docker run --rm -it pactfoundation/pact-cli:latest /bin/sh -c 'uname -sm'
+  ```
+
+### Multi-manifest image
+
+Multi-platform images are available, by appending `-multi` to any release tag
+
+- `--platform=linux/amd64` 
+- `--platform=linux/arm` 
+- `--platform=linux/arm64` 
+
+  ```sh
+  docker run --rm it pactfoundation/pact-cli:latest-multi /bin/sh -c 'uname -sm'
+  ```
+
 ## Usage
 
 You can run the following examples against a public test Pact Broker with the following credentials:
