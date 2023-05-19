@@ -29,7 +29,7 @@ RUN apk update \
              libressl-dev \
              ruby-rdoc \
   \
-  && gem install bundler -v 2.4 \
+  && gem install bundler -v 2.4.12 \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
