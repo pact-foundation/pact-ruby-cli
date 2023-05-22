@@ -1,6 +1,10 @@
 <a name="0.51.0.4"></a>
 ### 0.51.0.4 (2023-05-18)
 
+#### Features
+
+* Multi manifest build - arm64/arm (new) + amd64 (current)	 ([944b799](/../../commit/944b799))
+
 <a name="0.51.0.3"></a>
 ### 0.51.0.3 (2023-05-17)
 
