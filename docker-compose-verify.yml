@@ -2,12 +2,12 @@ version: "3"
 
 services:
   api:
-    image: ruby:2.5-alpine
+    image: ruby:3.1-alpine
     environment:
       # Setting the response body as an environment variable is just a way
       # to get around the multiple layers of nested quotes in the command!
       RESPONSE_BODY: "{\"id\": \"1\", \"name\": \"Foo\"}"
-    command: sh -c "gem install rack && rackup -o 0.0.0.0 -b \"run ->(env){ [200, {'Content-Type' => 'application/json'}, [ENV['RESPONSE_BODY']]] }\""
+    command: sh -c "gem install webrick -v 1.8.1 && gem install rack -v 2.2.7 && rackup -o 0.0.0.0 -b \"run ->(env){ [200, {'Content-Type' => 'application/json'}, [ENV['RESPONSE_BODY']]] }\""
     expose:
       - "9292"
 
@@ -28,4 +28,4 @@ services:
       --provider docker-example-provider
       --provider-app-version ${GIT_COMMIT}
       --provider-version-tag ${GIT_BRANCH}
-      --wait 10
+      --wait 20
