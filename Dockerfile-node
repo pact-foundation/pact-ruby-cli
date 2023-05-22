@@ -1,4 +1,4 @@
-ARG NODE_VERSION=14
+ARG NODE_VERSION=18
 FROM node:${NODE_VERSION}-alpine3.17
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"

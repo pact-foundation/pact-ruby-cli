@@ -20,9 +20,9 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        node: [ 14, 15, 16, 17, 18, 19, 20 ]
+        node: [ 16, 18, 20 ]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       
 
       - name: Login to Docker Hub
