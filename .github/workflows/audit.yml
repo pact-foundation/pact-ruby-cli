@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCKER_TARGET_PLATFORM: ${{ matrix.DOCKER_TARGET_PLATFORM }}
+      TAG: latest
     steps:
       - uses: actions/checkout@v3
       - name: Prepare Docker multi-arch builder for ${{ matrix.DOCKER_TARGET_PLATFORM }}

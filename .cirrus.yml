@@ -1,6 +1,7 @@
 env:
   DOCKER_IMAGE_ORG_AND_NAME: pactfoundation/pact-cli
   DOCKER_TARGET_PLATFORM: linux/arm64
+  TAG: latest
 
 linux_arm64_build_test_task: 
   compute_engine_instance:

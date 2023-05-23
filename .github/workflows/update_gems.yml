@@ -1,0 +1,66 @@
+# TODO abort if there are no changes to the Gemfile.
+
+name: Update gems
+
+on:
+  repository_dispatch:
+    types:
+      - gem-released
+  workflow_dispatch:
+    inputs:
+      released_gem_name:
+        description: The name of the gem that was released
+        default: pact
+        required: false
+      released_gem_version:
+        description: The version of the game that was released
+        required: false
+      released_gem_version_increment:
+        description: "The version increment"
+        required: false
+        default: ""
+        type: choice
+        options:
+          - ""
+          - patch
+          - minor
+          - major
+          - pre
+
+env:
+  RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}${{ github.event.inputs.released_gem_name }}'
+  RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}${{ github.event.inputs.released_gem_version }}'
+  RELEASED_GEM_INCREMENT: '${{ github.event.client_payload.version }}${{ github.event.inputs.released_gem_version_increment }}'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - uses: ruby/setup-ruby@v1
+
+    - name: Configure git
+      run: |
+        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git config --global user.name "${GITHUB_ACTOR}"
+        git config --global push.default current
+
+    - name: Update gems
+      run: script/update-gems-workflow/update-gems.sh
+
+    - name: Detect changes
+      run: script/update-gems-workflow/detect-changes.sh
+
+    - name: Git commit and push
+      run: script/update-gems-workflow/git-commit-and-push-gemfile.sh
+
+    - name: Trigger release
+      uses: peter-evans/repository-dispatch@v1
+      if: ${{ github.repository_owner == 'pact-foundation' }}
+      with:
+        token: ${{ secrets.GHTOKENFORPACTCLIRELEASE }}
+        event-type: release-triggered
+        client-payload: '{"increment": "${{ github.event.client_payload.increment }}${{ github.event.inputs.released_gem_version_increment }}"}'

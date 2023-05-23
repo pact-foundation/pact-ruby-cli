@@ -15,7 +15,20 @@ on:
           - major
           - minor
           - patch
-
+      # Sets the first part of the Docker tag - this will update the VERSION file
+      version:
+        description: "Custom version, requires increment to be set"
+        required: false
+      tag:
+        description: "Custom Docker image tag (note - this won't update the VERSION file and is for non-prod releases only)"
+        required: false
+      push_to_latest:
+        description: 'Should push to latest'
+        type: boolean
+        default: true
+      docker_repository:
+        description: The Docker repository to which the image should be published
+        default: pactfoundation
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -35,5 +48,9 @@ jobs:
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-          CUSTOM_TAG: ${{ github.event.client_payload.tag }}
-          INCREMENT: ${{ github.event.inputs.increment }}
+          DOCKER_REPOSITORY: ${{ github.event.inputs.docker_repository }}
+          TAG: ${{ github.event.inputs.tag }}
+          VERSION: ${{ github.event.inputs.version }}
+          # populate INCREMENT from workflow_dispatch or repository_dispatch
+          INCREMENT: ${{ github.event.client_payload.increment }}${{ github.event.inputs.increment }}
+          PUSH_TO_LATEST: ${{ github.event.inputs.push_to_latest }}
