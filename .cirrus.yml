@@ -1,6 +1,6 @@
 env:
   DOCKER_IMAGE_ORG_AND_NAME: pactfoundation/pact-cli
-  TAG: $CIRRUS_TAG
+  DOCKER_TARGET_PLATFORM: linux/arm64
 
 linux_arm64_build_test_task: 
   compute_engine_instance:
@@ -8,7 +8,12 @@ linux_arm64_build_test_task:
     image: family/docker-builder-arm64
     architecture: arm64
     platform: linux
-    cpu: 4
-    memory: 16G
-  script:
-    - script/test.sh
+    cpu: 2
+    memory: 4G
+  pre_req_script: |
+      apt update --yes && apt install --yes jq
+      ./script/release-workflow/docker-prepare.sh
+  build_audit_script: |
+      ./script/release-workflow/audit.sh
+  test_script: |
+      ./script/test.sh
