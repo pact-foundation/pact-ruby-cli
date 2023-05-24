@@ -1,4 +1,4 @@
-FROM alpine:3.17.3
+FROM alpine:3.18
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
@@ -9,19 +9,19 @@ ADD docker/gemrc /root/.gemrc
 ADD docker/pact /usr/local/bin/pact
 
 RUN apk update \
-  && apk add ruby=3.1.4-r0 \
-             ruby-bigdecimal=3.1.4-r0 \
-             ruby-io-console=3.1.4-r0 \
+  && apk add ruby=3.2.2-r0 \
+             ruby-bigdecimal=3.2.2-r0 \
+             ruby-io-console=3.2.2-r0 \
              ca-certificates=20230506-r0 \
              libressl \
              less \
              git \
   && apk add --virtual "build-dependencies" \
              build-base=0.5-r3 \
-             ruby-dev=3.1.4-r0 \
+             ruby-dev=3.2.2-r0 \
              libressl-dev \
-             ruby-rdoc=3.1.4-r0 \
-  && gem install bundler -v 2.4.12 \
+             ruby-rdoc=3.2.2-r0 \
+  && gem install bundler -v 2.4 \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
@@ -46,7 +46,7 @@ ADD lib/pact/cli/version.rb ./lib/pact/cli/version.rb
 RUN bundle config set without 'test development' \
     bundle config set deployment 'true' \
       && bundle install \
-      && find /usr/lib/ruby/gems/3.1.0/gems -name Gemfile.lock -maxdepth 2 -delete
+      && find /usr/lib/ruby/gems/3.2.0/gems -name Gemfile.lock -maxdepth 2 -delete
 ADD docker/entrypoint.sh $HOME/entrypoint.sh
 ADD bin ./bin
 ADD lib ./lib
