@@ -12,7 +12,7 @@ services:
       - "9292"
 
   pact_verifier:
-    image: pactfoundation/pact-cli:latest
+    image: pactfoundation/pact-cli:0.52.0-pactcli0.51.0
     depends_on:
       - api
     environment:
