@@ -2,7 +2,7 @@
 
 set -e
 
-export DOCKER_IMAGE_ORG_AND_NAME=${DOCKER_IMAGE_ORG_AND_NAME:-'pact-foundation/pact-cli'}
+export DOCKER_IMAGE_ORG_AND_NAME=${DOCKER_IMAGE_ORG_AND_NAME:-'pactfoundation/pact-cli'}
 if [ -n "${DOCKER_TARGET_PLATFORM:-}" ]; then
     export ARCH=$(echo "$DOCKER_TARGET_PLATFORM" | sed 's/linux\///' | sed 's/\/v.*//')
     export ARCHES="$ARCH"
