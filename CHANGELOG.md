@@ -1,3 +1,11 @@
+<a name="0.53.0-pactcli0.52.0"></a>
+### 0.53.0-pactcli0.52.0 (2023-05-24)
+
+#### Features
+
+* **gems**
+  * pact-cli v0.52.0: update pact-mock_service gem to version 3.11.2	 ([04135ad](/../../commit/04135ad))
+
 <a name="0.52.0-pactcli0.51.0"></a>
 ### 0.52.0-pactcli0.51.0 (2023-05-24)
 
