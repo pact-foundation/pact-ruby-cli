@@ -30,7 +30,7 @@ on:
 env:
   RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}${{ github.event.inputs.released_gem_name }}'
   RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}${{ github.event.inputs.released_gem_version }}'
-  RELEASED_GEM_INCREMENT: '${{ github.event.client_payload.version }}${{ github.event.inputs.released_gem_version_increment }}'
+  RELEASED_GEM_INCREMENT: '${{ github.event.client_payload.increment }}${{ github.event.inputs.released_gem_version_increment }}'
 
 jobs:
   release:
