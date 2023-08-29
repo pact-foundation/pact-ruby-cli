@@ -1,3 +1,12 @@
+<a name="0.55.0-pactcli0.55.0"></a>
+### 0.55.0-pactcli0.55.0 (2023-08-29)
+
+#### Features
+
+* **gems**
+  * pact-cli v0.55.0: update pact_broker-client gem to version 1.70.0	 ([03fbd15](/../../commit/03fbd15))
+  * pact-cli v0.54.0: update pact_broker-client gem to version 1.69.0	 ([4034d71](/../../commit/4034d71))
+
 <a name="0.54.0-pactcli0.53.0"></a>
 ### 0.54.0-pactcli0.53.0 (2023-07-10)
 
