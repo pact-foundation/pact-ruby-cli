@@ -8,7 +8,7 @@ GIT
 PATH
   remote: .
   specs:
-    pact-cli (0.54.0)
+    pact-cli (0.55.0)
       json (~> 2.3)
       pact-mock_service
       pact-provider-verifier
@@ -94,7 +94,7 @@ GEM
       diff-lcs (~> 1.4)
       expgen (~> 0.1)
       rainbow (~> 3.1.1)
-    pact_broker-client (1.69.0)
+    pact_broker-client (1.70.0)
       dig_rb (~> 1.0)
       httparty (>= 0.21.0, < 1.0.0)
       rake (~> 13.0)
