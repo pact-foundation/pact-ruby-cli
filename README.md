@@ -1,8 +1,6 @@
 # Pact CLI
 
-This tool provides an amalgamated CLI of all the Pact CLI tools available in the Pact Ruby implementation (publish and verify pacts, and interact with the Pact Broker). While it is functionally the same as the [pact-ruby-standalone](https://github.com/pact-foundation/pact-ruby-standalone) it is packaged as a Docker container and a single top level entrypoint (`pact`). You can pull the `pactfoundation/pact-cli` image from [Dockerhub](https://hub.docker.com/r/pactfoundation/pact-cli)
-
-> Note: On 23rd May 2023, the format of the docker tag changed from ending with the Pact Cli Gem version (`0.51.0.4`), where `.4` noted a change to the one of the packaged gems, to ending with the Pact Cli gem version (`0.52.0-pactcli0.52.0`). Read about the new versioning scheme [here](#versioning).
+This tool provides an amalgamated CLI of all the Pact CLI tools available in the Pact Ruby implementation (publish and verify pacts, and interact with the Pact Broker). While it is functionally the same as the [pact-ruby-standalone](https://github.com/pact-foundation/pact-ruby-standalone) it is packaged as a Docker container and a single top level entrypoint (`pact`).
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/pact-foundation/pact-msw-adapter/graphs/commit-activity)
 
@@ -217,28 +215,6 @@ example
 lib
 pact-cli.gemspec
 ```
-
-## Versioning
-
-The Docker image tag uses a semantic-like versioning scheme (Docker tags don't support the `+` symbol, so we cannot implement a strict semantic version). The format of the tag is `M.m.p-pactcli<pact_cli_version>` eg. `0.52.0-pactcli0.52.0`. The `M.m.p` (eg. `0.52.0`) is the semantic part of the tag number, while the `-pactcli<pact_cli_version>` suffix is purely informational.
-
-The major version will be bumped for:
-
-  * Major increments of the Pact Cli gem
-  * Major increments of the base image that contain backwards incompatible changes (eg. dropping support for Docker 19)
-  * Any other backwards incompatible changes made for any reason (eg. environment variable mappings, entrypoints, tasks, supported auth)
-
-The minor version will be bumped for:
-
-  * Minor increments of the Pact Cli gem
-  * Additional non-breaking functionality added to the Docker image
-
-The patch version will be bumped for:
-
-  * Patch increments of the Pact Cli gem
-  * Other fixes to the Docker image
-
-Until May 2023, the versioning scheme used the `M.m.p` from the Pact Cli gem, with an additional `RELEASE` number at the end (eg. `0.51.0.4`). This scheme was replace by the current scheme because it was unable to semantically convey changes made to the Docker image that were unrelated to a Pact Cli gem version change (eg. alpine upgrades).
 
 ## Contributing
 

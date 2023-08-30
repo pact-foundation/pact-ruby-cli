@@ -1,0 +1,41 @@
+# TODO abort if there are no changes to the Gemfile.
+
+name: Update gems
+
+on:
+  repository_dispatch:
+    types:
+      - gem-released
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - uses: ruby/setup-ruby@v1
+
+    - id: update
+      run: script/workflows/update.sh
+      env:
+        RELEASED_GEM_NAME: ${{ github.event.client_payload.name }}
+        RELEASED_GEM_VERSION: ${{ github.event.client_payload.version }}
+
+    - name: Commit and push gem file changes
+      uses: EndBug/add-and-commit@v4
+      with:
+        add: Gemfile.lock
+        author_name: Beth Skurrie via Github Action
+        author_email: beth@bethesque.com
+        message: 'feat(gems): ${{ steps.update.outputs.commit_message }}'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Trigger release
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.GHTOKENFORPACTCLIRELEASE }}
+        event-type: release-triggered
