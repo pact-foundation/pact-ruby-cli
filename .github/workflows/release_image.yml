@@ -48,9 +48,9 @@ jobs:
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-          DOCKER_REPOSITORY: ${{ github.event.inputs.docker_repository }}
-          TAG: ${{ github.event.inputs.tag }}
+          DOCKER_IMAGE_ORG_AND_NAME: ${{ github.event.inputs.docker_repository }}/pact-cli
           VERSION: ${{ github.event.inputs.version }}
-          # populate INCREMENT from workflow_dispatch or repository_dispatch
           INCREMENT: ${{ github.event.client_payload.increment }}${{ github.event.inputs.increment }}
+          CUSTOM_TAG: ${{ github.event.client_payload.tag }}${{ github.event.inputs.tag }}
+          # populate INCREMENT from workflow_dispatch or repository_dispatch
           PUSH_TO_LATEST: ${{ github.event.inputs.push_to_latest }}

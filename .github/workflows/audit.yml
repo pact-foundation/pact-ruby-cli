@@ -12,7 +12,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        DOCKER_TARGET_PLATFORM: [linux/arm, linux/arm64, linux/amd64]
+        DOCKER_TARGET_PLATFORM: [
+          # linux/arm, # Disabled whilst waiting for next release of trivy with published arm artefacts
+          linux/arm64, 
+          linux/amd64
+          ]
     runs-on: ubuntu-latest
     env:
       DOCKER_TARGET_PLATFORM: ${{ matrix.DOCKER_TARGET_PLATFORM }}
