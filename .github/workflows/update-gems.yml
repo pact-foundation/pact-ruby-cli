@@ -18,22 +18,23 @@ jobs:
         fetch-depth: 0
     - uses: ruby/setup-ruby@v1
 
+    - name: Configure git
+      run: |
+        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git config --global user.name "${GITHUB_ACTOR}"
+        git config --global push.default current
+
     - id: update
       run: script/workflows/update.sh
       env:
         RELEASED_GEM_NAME: ${{ github.event.client_payload.name }}
         RELEASED_GEM_VERSION: ${{ github.event.client_payload.version }}
-
+  
     - name: Commit and push gem file changes
-      uses: EndBug/add-and-commit@v4
-      with:
-        add: Gemfile.lock
-        author_name: Beth Skurrie via Github Action
-        author_email: beth@bethesque.com
-        message: 'feat(gems): ${{ steps.update.outputs.commit_message }}'
+      run: script/workflows/git-commit-and-push-gemfile.sh
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+        COMMIT_MESSAGE: ${{ steps.update.outputs.commit_message }}
+  
     - name: Trigger release
       uses: peter-evans/repository-dispatch@v1
       with:
