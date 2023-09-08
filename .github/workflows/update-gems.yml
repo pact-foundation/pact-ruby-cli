@@ -1,5 +1,3 @@
-# TODO abort if there are no changes to the Gemfile.
-
 name: Update gems
 
 on:
