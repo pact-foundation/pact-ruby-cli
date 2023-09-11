@@ -1,3 +1,11 @@
+<a name="0.56.0.1"></a>
+### 0.56.0.1 (2023-09-11)
+
+#### Features
+
+* **gems**
+  * updated pact_broker-client (1.72.0)	 ([bff4fe6](/../../commit/bff4fe6))
+
 <a name="0.56.0.0"></a>
 ### 0.56.0.0 (2023-09-08)
 
