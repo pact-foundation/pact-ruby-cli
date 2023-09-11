@@ -48,7 +48,8 @@ jobs:
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-          DOCKER_IMAGE_ORG_AND_NAME: ${{ github.event.inputs.docker_repository }}/pact-cli
+          DOCKER_IMAGE_ORG_AND_NAME: pactfoundation/pact-cli # Below is only set on workflow_dispatch, not workflow triggers
+          # DOCKER_IMAGE_ORG_AND_NAME: ${{ github.event.inputs.docker_repository }}/pact-cli
           VERSION: ${{ github.event.inputs.version }}
           INCREMENT: ${{ github.event.client_payload.increment }}${{ github.event.inputs.increment }}
           CUSTOM_TAG: ${{ github.event.client_payload.tag }}${{ github.event.inputs.tag }}
