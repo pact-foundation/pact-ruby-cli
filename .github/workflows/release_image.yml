@@ -9,9 +9,10 @@ on:
     inputs:
       increment:
         description: Increment
-        default: minor
+        default: "null"
         type: choice
         options:
+          - "null"
           - major
           - minor
           - patch
