@@ -186,6 +186,19 @@ docker run --rm \
 
 You can also set `SSL_CERT_DIR` and mount the directory instead of the file.
 
+---
+
+To connect to a Pact Broker that uses **x509 certificates** for client authentication:
+
+```
+docker run --rm \
+ -v <PATH_TO_CLIENT_CERT_FILE_ON_HOST>:/tmp/clientcert.pem \
+ -v <PATH_TO_CLIENT_KEY_FILE_ON_HOST>:/tmp/clientkey.pem \
+ -e X509_CLIENT_CERT_FILE=/tmp/clientcert.pem \
+ -e X509_CLIENT_KEY_FILE=/tmp/clientkey.pem \
+ pactfoundation/pact-cli:latest ...
+```
+
 ### Shell access inside Docker container
 
 To meet with [Docker consistency rules](https://github.com/docker-library/official-images#consistency) `sh` access is provided, _NOTE:_ `bash` is not installed in the container
