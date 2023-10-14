@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release:
+  update-gems:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,7 +34,7 @@ jobs:
         COMMIT_MESSAGE: ${{ steps.update.outputs.commit_message }}
   
     - name: Trigger release
-      uses: peter-evans/repository-dispatch@v1
+      uses: peter-evans/repository-dispatch@v2
       with:
         token: ${{ secrets.GHTOKENFORPACTCLIRELEASE }}
         event-type: release-triggered
