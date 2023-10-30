@@ -1,3 +1,12 @@
+<a name="0.56.0.4"></a>
+### 0.56.0.4 (2023-10-18)
+
+#### Features
+
+* **gems**
+  * updated pact-support (1.20.0)	 ([e8afd12](/../../commit/e8afd12))
+  * updated pact_broker-client (1.74.0)	 ([3978404](/../../commit/3978404))
+
 <a name="0.56.0.2"></a>
 ### 0.56.0.2 (2023-09-12)
 
