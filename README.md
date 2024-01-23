@@ -11,32 +11,20 @@ This tool provides an amalgamated CLI of all the Pact CLI tools available in the
 [![pulls](https://badgen.net/docker/pulls/pactfoundation/pact-cli?icon=docker&label=pulls)](https://hub.docker.com/r/pactfoundation/pact-cli)
 [![stars](https://badgen.net/docker/stars/pactfoundation/pact-cli?icon=docker&label=stars)](https://hub.docker.com/r/pactfoundation/pact-cli)
 
-[![size: amd64](https://badgen.net/docker/size/pactfoundation/pact-cli/latest-multi/amd64?icon=docker&label=size%3Aamd64)](https://hub.docker.com/r/pactfoundation/pact-cli)
-[![size: arm64](https://badgen.net/docker/size/pactfoundation/pact-cli/latest-multi/arm64?icon=docker&label=size%3Aarm64)](https://hub.docker.com/r/pactfoundation/pact-cli)
-[![size: arm](https://badgen.net/docker/size/pactfoundation/pact-cli/latest-multi/arm?icon=docker&label=size%3Aarm)](https://hub.docker.com/r/pactfoundation/pact-cli)
+[![size: amd64](https://badgen.net/docker/size/pactfoundation/pact-cli/latest/amd64?icon=docker&label=size%3Aamd64)](https://hub.docker.com/r/pactfoundation/pact-cli)
+[![size: arm64](https://badgen.net/docker/size/pactfoundation/pact-cli/latest/arm64?icon=docker&label=size%3Aarm64)](https://hub.docker.com/r/pactfoundation/pact-cli)
+[![size: arm](https://badgen.net/docker/size/pactfoundation/pact-cli/latest/arm?icon=docker&label=size%3Aarm)](https://hub.docker.com/r/pactfoundation/pact-cli)
 
 ## Platforms
 
-### Single platform images
-
-By default, vanilla tags, are built only for `amd64`
-
-- `--platform=linux/amd64`
-
-  ```sh
-  docker run --rm -it pactfoundation/pact-cli:latest /bin/sh -c 'uname -sm'
-  ```
-
-### Multi-manifest image
-
-Multi-platform images are available, by appending `-multi` to any release tag
+Multi-platform images are available, and can be used cross-platform by setting the `platform` flag.
 
 - `--platform=linux/amd64` 
 - `--platform=linux/arm` 
 - `--platform=linux/arm64` 
 
   ```sh
-  docker run --rm it pactfoundation/pact-cli:latest-multi /bin/sh -c 'uname -sm'
+  docker run --rm it pactfoundation/pact-cli:latest /bin/sh -c 'uname -sm'
   ```
 
 ## Usage
