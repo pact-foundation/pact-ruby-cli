@@ -17,5 +17,4 @@ ${script_dir}/docker-build.sh
 ${script_dir}/scan.sh
 ${script_dir}/prepare-release.sh
 ${script_dir}/docker-push.sh
-${script_dir}/git-commit.sh
 ${script_dir}/git-push.sh
