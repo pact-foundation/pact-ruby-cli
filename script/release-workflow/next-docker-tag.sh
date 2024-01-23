@@ -2,9 +2,15 @@
 
 set -eu
 
-gem_version_from_gemfile_lock() {
-  grep "pact_broker (" pact_broker/Gemfile.lock | awk -F '[()]' '{print $2}'
-}
+# If increment in null, then use the existing version number
+# and just increase `n` by 1 in semver version x.y.z.n 
+# as set in .github./workflows/release_image.yml
+# as set in script/release.sh
+if [ "${INCREMENT:-}" ]; then
+  if [ "${INCREMENT:-}" != "null" ]; then
+    bundle exec bump ${INCREMENT:-minor} --no-commit --replace-in $PWD/lib/pact/cli/version.rb > /dev/null
+  fi
+fi
 
 gem_version=$(ruby -I lib -e "require 'pact/cli/version.rb'; puts Pact::Cli::VERSION")
 existing_tags=$(git tag)
