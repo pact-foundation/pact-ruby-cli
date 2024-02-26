@@ -1,3 +1,19 @@
+<a name="1.1.0.0"></a>
+### 1.1.0.0 (2024-02-26)
+
+#### Features
+
+* **ci**
+  * additionally publish images to ghcr.io (#127)	 ([0e777c4](/../../commit/0e777c4))
+
+#### Bug Fixes
+
+* **ci**
+  * ghcr workflow POSIX sh, string replacement is undefined	 ([b739218](/../../commit/b739218))
+
+* ghcr images need to publish to pact-foundation / dockerhub images to pactfoundation	 ([5933772](/../../commit/5933772))
+* ghcr release workflow had missing arg	 ([ebfabac](/../../commit/ebfabac))
+
 <a name="1.0.0.0"></a>
 ### 1.0.0.0 (2024-01-23)
 
