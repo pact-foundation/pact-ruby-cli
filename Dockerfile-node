@@ -50,7 +50,7 @@ ADD Gemfile .
 ADD Gemfile.lock .
 ADD lib/pact/cli/version.rb ./lib/pact/cli/version.rb
 RUN  bundle install --without test development --deployment true \
-      && find /usr/lib/ruby/gems/3.1.0/gems -name Gemfile.lock -maxdepth 2 -delete
+      && find /usr/lib/ruby/gems/3.2.0/gems -name Gemfile.lock -maxdepth 2 -delete
 ADD docker/entrypoint.sh $HOME/entrypoint.sh
 ADD bin ./bin
 ADD lib ./lib
