@@ -12,7 +12,7 @@ RUN apk update \
   && apk add ruby=3.2.2-r0 \
              ruby-bigdecimal=3.2.2-r0 \
              ruby-io-console=3.2.2-r0 \
-             ca-certificates=20230506-r0 \
+             ca-certificates=20240226-r0 \
              libressl \
              less \
              git \
