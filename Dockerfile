@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.19
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
@@ -9,17 +9,17 @@ ADD docker/gemrc /root/.gemrc
 ADD docker/pact /usr/local/bin/pact
 
 RUN apk update \
-  && apk add ruby=3.2.2-r0 \
-             ruby-io-console=3.2.2-r0 \
+  && apk add ruby=3.2.2-r1 \
+             ruby-io-console=3.2.2-r1 \
              ca-certificates=20240226-r0 \
              libressl \
              less \
              git \
   && apk add --virtual "build-dependencies" \
              build-base=0.5-r3 \
-             ruby-dev=3.2.2-r0 \
+             ruby-dev=3.2.2-r1 \
              libressl-dev \
-             ruby-rdoc=3.2.2-r0 \
+             ruby-rdoc=3.2.2-r1 \
   && gem install bundler -v "~>2.5" \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
