@@ -9,6 +9,7 @@ PATH
   remote: .
   specs:
     pact-cli (1.1.0)
+      bigdecimal (= 3.1.3)
       json (~> 2.3)
       pact-mock_service
       pact-provider-verifier
@@ -19,7 +20,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     awesome_print (1.9.2)
-    bigdecimal (3.1.7)
+    bigdecimal (3.1.3)
     bump (0.10.0)
     coderay (1.1.3)
     diff-lcs (1.5.1)
