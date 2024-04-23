@@ -10,7 +10,6 @@ ADD docker/pact /usr/local/bin/pact
 
 RUN apk update \
   && apk add ruby=3.2.2-r0 \
-             ruby-bigdecimal=3.2.2-r0 \
              ruby-io-console=3.2.2-r0 \
              ca-certificates=20240226-r0 \
              libressl \
@@ -21,12 +20,13 @@ RUN apk update \
              ruby-dev=3.2.2-r0 \
              libressl-dev \
              ruby-rdoc=3.2.2-r0 \
-  && gem install bundler -v 2.4 \
+  && gem install bundler -v "~>2.5" \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
   && gem update --system \
   && gem install json -v "~>2.3" \
+  && gem install bigdecimal -v "~>3.1" \
   && gem cleanup \
   && apk del build-dependencies \
   && rm -rf /usr/lib/ruby/gems/*/cache/* \

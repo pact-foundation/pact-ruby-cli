@@ -1,5 +1,5 @@
 ARG NODE_VERSION=18
-FROM node:${NODE_VERSION}-alpine3.17
+FROM node:${NODE_VERSION}-alpine3.18
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
@@ -16,7 +16,6 @@ ADD docker/pact /usr/local/bin/pact
 
 RUN apk update \
   && apk add ruby \
-             ruby-bigdecimal \
              ruby-bundler \
              ruby-io-console \
              ca-certificates \
@@ -29,7 +28,7 @@ RUN apk update \
              libressl-dev \
              ruby-rdoc \
   \
-  && gem install bundler -v 2.4.12 \
+  && gem install bundler -v "~>2.5" \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
