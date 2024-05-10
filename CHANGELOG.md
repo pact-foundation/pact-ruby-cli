@@ -1,3 +1,17 @@
+<a name="1.1.0.1"></a>
+### 1.1.0.1 (2024-04-23)
+
+#### Features
+
+* **gems**
+  * updated	 ([4fbf98d](/../../commit/4fbf98d))
+
+#### Bug Fixes
+
+* **deps**
+  * pin bigdecimal to 3.1.3 provided by stdlib ∙ ∙ - update of tins, via term-ansicolour, uses bigdecimal, currently at 3.17 ∙ - bigdecimal is installed in the dockerfile via alpine, which only provides the stdlid version as it is locked to 3.2.2-r0	 ([ab3e8a0](/../../commit/ab3e8a0))
+  * update cacerts to 20240226-r0	 ([2cbfaf9](/../../commit/2cbfaf9))
+
 <a name="1.1.0.0"></a>
 ### 1.1.0.0 (2024-02-26)
 
