@@ -45,6 +45,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pact-provider-verifier"
   spec.add_dependency "pact_broker-client", "~> 1.28"
   spec.add_dependency "json", "~>2.3" # must match native lib install in the Dockerfile
+  spec.add_dependency "bigdecimal", "~>3.1" # must match native lib install in the Dockerfile
 
   # Locking this until we have given rack-test 3.0 a good shake out in pure Ruby
   spec.add_dependency "rack-test", ">= 0.6.3", "< 2.0.0"

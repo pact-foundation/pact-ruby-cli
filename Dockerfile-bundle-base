@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.19
 
 ENV NOKOGIRI_USE_SYSTEM_LIBRARIES=1
 ENV BUNDLE_SILENCE_ROOT_WARNING=1
@@ -7,7 +7,6 @@ ADD docker/gemrc /root/.gemrc
 
 RUN apk update \
   && apk add ruby \
-             ruby-bigdecimal \
              ruby-bundler \
              ruby-io-console \
              ca-certificates \
@@ -22,7 +21,8 @@ RUN apk update \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
   && gem update --system \
-  && gem install json
+  && gem install json \
+  && gem install bigdecimal
 
 ENV HOME /pact
 ENV DOCKER true
