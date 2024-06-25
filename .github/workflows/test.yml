@@ -8,7 +8,7 @@ jobs:
     env:
       DOCKER_IMAGE_ORG_AND_NAME: pactfoundation/pact-cli
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Integration tests
         run: script/test.sh
@@ -22,7 +22,7 @@ jobs:
       matrix:
         node: [ 16, 18, 20 ]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
 
       - name: Login to Docker Hub
