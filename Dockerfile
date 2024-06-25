@@ -24,7 +24,7 @@ RUN apk update \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
-  && gem update --system \
+  # && gem update --system \
   && gem install json -v "~>2.3" \
   && gem install bigdecimal -v "~>3.1" \
   && gem cleanup \
@@ -46,7 +46,7 @@ ADD lib/pact/cli/version.rb ./lib/pact/cli/version.rb
 RUN bundle config set without 'test development' \
     bundle config set deployment 'true' \
       && bundle install \
-      && find /usr/lib/ruby/gems/3.2.0/gems -name Gemfile.lock -maxdepth 2 -delete
+      && find /usr/lib/ruby/gems/3.3.0/gems -name Gemfile.lock -maxdepth 2 -delete
 ADD docker/entrypoint.sh $HOME/entrypoint.sh
 ADD bin ./bin
 ADD lib ./lib
