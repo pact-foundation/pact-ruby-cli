@@ -24,9 +24,10 @@ RUN apk update \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
-  # && gem update --system \
+  && gem update --system 3.5.14 \
   && gem install json -v "~>2.3" \
   && gem install bigdecimal -v "~>3.1" \
+  && gem install racc -v "~>1.8" \
   && gem cleanup \
   && apk del build-dependencies \
   && rm -rf /usr/lib/ruby/gems/*/cache/* \
@@ -34,8 +35,8 @@ RUN apk update \
             /tmp/* \
             /var/tmp/*
 
-ENV HOME /pact
-ENV DOCKER true
+ENV HOME=/pact
+ENV DOCKER=true
 ENV BUNDLE_GEMFILE=$HOME/Gemfile
 WORKDIR $HOME
 

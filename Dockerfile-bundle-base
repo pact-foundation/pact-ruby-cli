@@ -20,12 +20,13 @@ RUN apk update \
              ruby-rdoc \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
-  # && gem update --system \
+  && gem update --system 3.5.14 \
   && gem install json \
-  && gem install bigdecimal
+  && gem install bigdecimal \
+  && gem install racc
 
-ENV HOME /pact
-ENV DOCKER true
+ENV HOME=/pact
+ENV DOCKER=true
 WORKDIR $HOME
 
 ADD pact-cli.gemspec Gemfile Gemfile.lock $HOME/
