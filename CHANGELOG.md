@@ -1,3 +1,13 @@
+<a name="1.2.0.0"></a>
+### 1.2.0.0 (2024-06-25)
+
+#### Bug Fixes
+
+* **deps**
+  * update to alpine 3.20 / Ruby 3.3.3	 ([58c8e4d](/../../commit/58c8e4d))
+
+* Dockerfile-bundle-base to reduce vulnerabilities	 ([1396cfd](/../../commit/1396cfd))
+
 <a name="1.1.0.3"></a>
 ### 1.1.0.3 (2024-06-17)
 
