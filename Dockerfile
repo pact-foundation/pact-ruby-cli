@@ -1,4 +1,4 @@
-FROM alpine:3.19
+FROM alpine:3.20
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
@@ -9,24 +9,25 @@ ADD docker/gemrc /root/.gemrc
 ADD docker/pact /usr/local/bin/pact
 
 RUN apk update \
-  && apk add ruby=3.2.4-r0 \
-             ruby-io-console=3.2.4-r0 \
+  && apk add ruby=3.3.3-r0 \
+             ruby-io-console=3.3.3-r0 \
              ca-certificates=20240226-r0 \
              libressl \
              less \
              git \
   && apk add --virtual "build-dependencies" \
              build-base=0.5-r3 \
-             ruby-dev=3.2.4-r0 \
+             ruby-dev=3.3.3-r0 \
              libressl-dev \
-             ruby-rdoc=3.2.4-r0 \
+             ruby-rdoc=3.3.3-r0 \
   && gem install bundler -v "~>2.5" \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
-  && gem update --system \
+  && gem update --system 3.5.14 \
   && gem install json -v "~>2.3" \
   && gem install bigdecimal -v "~>3.1" \
+  && gem install racc -v "~>1.8" \
   && gem cleanup \
   && apk del build-dependencies \
   && rm -rf /usr/lib/ruby/gems/*/cache/* \
@@ -34,8 +35,8 @@ RUN apk update \
             /tmp/* \
             /var/tmp/*
 
-ENV HOME /pact
-ENV DOCKER true
+ENV HOME=/pact
+ENV DOCKER=true
 ENV BUNDLE_GEMFILE=$HOME/Gemfile
 WORKDIR $HOME
 
@@ -46,7 +47,7 @@ ADD lib/pact/cli/version.rb ./lib/pact/cli/version.rb
 RUN bundle config set without 'test development' \
     bundle config set deployment 'true' \
       && bundle install \
-      && find /usr/lib/ruby/gems/3.2.0/gems -name Gemfile.lock -maxdepth 2 -delete
+      && find /usr/lib/ruby/gems/3.3.0/gems -name Gemfile.lock -maxdepth 2 -delete
 ADD docker/entrypoint.sh $HOME/entrypoint.sh
 ADD bin ./bin
 ADD lib ./lib

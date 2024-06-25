@@ -1,5 +1,5 @@
 ARG NODE_VERSION=18
-FROM node:${NODE_VERSION}-alpine3.19
+FROM node:${NODE_VERSION}-alpine3.20
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
@@ -32,16 +32,18 @@ RUN apk update \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
-  && gem update --system \
+  && gem update --system 3.5.14 \
   && gem install json -v "~>2.3" \
+  && gem install bigdecimal -v "~>3.1" \
+  && gem install racc -v "~>1.8" \
   && gem cleanup \
   && rm -rf /usr/lib/ruby/gems/*/cache/* \
             /var/cache/apk/* \
             /tmp/* \
             /var/tmp/*
 
-ENV HOME /pact
-ENV DOCKER true
+ENV HOME=/pact
+ENV DOCKER=true
 ENV BUNDLE_GEMFILE=$HOME/Gemfile
 WORKDIR $HOME
 
@@ -50,7 +52,7 @@ ADD Gemfile .
 ADD Gemfile.lock .
 ADD lib/pact/cli/version.rb ./lib/pact/cli/version.rb
 RUN  bundle install --without test development --deployment true \
-      && find /usr/lib/ruby/gems/3.2.0/gems -name Gemfile.lock -maxdepth 2 -delete
+      && find /usr/lib/ruby/gems/3.3.0/gems -name Gemfile.lock -maxdepth 2 -delete
 ADD docker/entrypoint.sh $HOME/entrypoint.sh
 ADD bin ./bin
 ADD lib ./lib
