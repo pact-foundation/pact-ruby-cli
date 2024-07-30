@@ -12,5 +12,5 @@ end
 group :development do
   gem "pry"
   gem 'conventional-changelog', '~> 1.3', git: 'https://github.com/bethesque/conventional-changelog-ruby.git', ref: 'feat/pact-foundation'
-  gem 'bump', '~> 0.5'
+  gem 'bump', '~> 0.9'
 end
