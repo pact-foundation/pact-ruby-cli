@@ -1,3 +1,11 @@
+<a name="1.3.0.1"></a>
+### 1.3.0.1 (2024-07-30)
+
+#### Features
+
+* **gems**
+  * updated pact_broker-client (1.75.4)	 ([dce7a59](/../../commit/dce7a59))
+
 <a name="1.3.0.0"></a>
 ### 1.3.0.0 (2024-07-24)
 
