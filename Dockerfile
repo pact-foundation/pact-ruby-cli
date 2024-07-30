@@ -28,6 +28,7 @@ RUN apk update \
   && gem install json -v "~>2.3" \
   && gem install bigdecimal -v "~>3.1" \
   && gem install racc -v "~>1.8" \
+  && gem uninstall rubygems-update \
   && gem cleanup \
   && apk del build-dependencies \
   && rm -rf /usr/lib/ruby/gems/*/cache/* \

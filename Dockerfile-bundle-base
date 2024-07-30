@@ -23,7 +23,8 @@ RUN apk update \
   && gem update --system 3.5.14 \
   && gem install json \
   && gem install bigdecimal \
-  && gem install racc
+  && gem install racc \
+  && gem uninstall rubygems-update
 
 ENV HOME=/pact
 ENV DOCKER=true
