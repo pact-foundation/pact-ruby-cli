@@ -20,13 +20,10 @@ jobs:
       TAG: latest
     steps:
       - uses: actions/checkout@v4
-      - name: Audit Docker image for amd64
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: ./script/release-workflow/audit.sh
-        env:
-          DOCKER_TARGET_PLATFORM: linux/amd64
-      - name: Audit Docker image for arm64
-        if: ${{ matrix.os == 'ubuntu-24.04-arm' }}
+      - name: Prepare Docker multi-arch builder for ${{ matrix.DOCKER_TARGET_PLATFORM }}
+        if: ${{ matrix.DOCKER_TARGET_PLATFORM }} == 'linux/arm64'
+        run: ./script/release-workflow/docker-prepare.sh
+      - name: Audit Docker image for ${{ matrix.DOCKER_TARGET_PLATFORM }}
         run: ./script/release-workflow/audit.sh
         env:
           DOCKER_TARGET_PLATFORM: linux/arm64
