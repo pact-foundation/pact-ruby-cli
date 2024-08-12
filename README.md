@@ -13,14 +13,12 @@ This tool provides an amalgamated CLI of all the Pact CLI tools available in the
 
 [![size: amd64](https://badgen.net/docker/size/pactfoundation/pact-cli/latest/amd64?icon=docker&label=size%3Aamd64)](https://hub.docker.com/r/pactfoundation/pact-cli)
 [![size: arm64](https://badgen.net/docker/size/pactfoundation/pact-cli/latest/arm64?icon=docker&label=size%3Aarm64)](https://hub.docker.com/r/pactfoundation/pact-cli)
-[![size: arm](https://badgen.net/docker/size/pactfoundation/pact-cli/latest/arm?icon=docker&label=size%3Aarm)](https://hub.docker.com/r/pactfoundation/pact-cli)
 
 ## Platforms
 
 Multi-platform images are available, and can be used cross-platform by setting the `platform` flag.
 
 - `--platform=linux/amd64` 
-- `--platform=linux/arm` 
 - `--platform=linux/arm64` 
 
   ```sh
