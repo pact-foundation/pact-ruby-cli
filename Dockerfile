@@ -1,7 +1,11 @@
 FROM alpine:3.22.0
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
-
+ARG TARGETPLATFORM
+ARG PLUGIN_CLI_VERSION=0.1.2
+ARG MOCK_SERVER_CLI_VERSION=1.0.6
+ARG VERIFIER_CLI_VERSION=1.1.3
+ARG STUB_SERVER_CLI_VERSION=0.6.0
 ENV NOKOGIRI_USE_SYSTEM_LIBRARIES=1
 ENV BUNDLE_SILENCE_ROOT_WARNING=1
 
@@ -59,6 +63,28 @@ ADD bin ./bin
 ADD lib ./lib
 ADD example/pacts ./example/pacts
 ADD example/provider-contracts ./example/provider-contracts
+
+RUN case ${TARGETPLATFORM} in \
+         "linux/amd64")  BIN_ARCH=x86_64  ;; \
+         "linux/arm64")  BIN_ARCH=aarch64  ;; \
+    esac \
+    && wget -qO - https://github.com/pact-foundation/pact-stub-server/releases/download/v0.6.0/pact-stub-server-linux-${BIN_ARCH}.gz \
+    | gunzip -fc > ./bin/pact-stub-server && chmod +x ./bin/pact-stub-server \
+    && wget -qO - https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.1.2/pact-plugin-cli-linux-${BIN_ARCH}.gz \
+    | gunzip -fc > ./bin/pact-plugin-cli && chmod +x ./bin/pact-plugin-cli  \
+    && wget -qO - https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v1.1.3/pact_verifier_cli-linux-${BIN_ARCH}.gz \
+    | gunzip -fc > ./bin/pact_verifier_cli && chmod +x ./bin/pact_verifier_cli \
+    && wget -qO - https://github.com/pact-foundation/pact-core-mock-server/releases/download/pact_mock_server_cli-v1.0.6/pact_mock_server_cli-linux-${BIN_ARCH}.gz \
+    | gunzip -fc > ./bin/pact_mock_server_cli && chmod +x ./bin/pact_mock_server_cli
+    # && wget -qO - https://github.com/pact-foundation/pact-stub-server/releases/download/v{STUB_SERVER_CLI_VERSION}/pact-stub-server-linux-${BIN_ARCH}.gz  \
+    # | gunzip -fc > ./bin/pact-stub-server-linux-${BIN_ARCH} && chmod +x ./bin/pact-stub-server \
+    # && wget -qO - https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v${PLUGIN_CLI_VERSION}/pact-plugin-cli-linux-${BIN_ARCH}.gz \
+    # | gunzip -fc > ./bin/pact-plugin-cli && chmod +x ./bin/pact-plugin-cli  \
+    # && wget -qO - https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v{VERIFIER_CLI_VERSION}/pact_verifier_cli-linux-${BIN_ARCH}.gz \
+    # | gunzip -fc > ./bin/pact_verifier_cli && chmod +x ./bin/pact_verifier_cli \
+    # && wget -qO - https://github.com/pact-foundation/pact-core-mock-server/releases/download/pact_mock_server_cli-v{MOCK_SERVER_CLI_VERSION}/pact_mock_server_cli-linux-${BIN_ARCH}.gz \
+    # | gunzip -fc > ./bin/pact_mock_server_cli && chmod +x ./bin/pact_mock_server_cli
+
 
 ENTRYPOINT ["/pact/entrypoint.sh"]
 CMD ["pact"]

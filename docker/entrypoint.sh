@@ -1,6 +1,7 @@
 #!/bin/sh
 
-PACT_COMMANDS=" broker help mock-service publish stub-service verify version "
+PACT_COMMANDS=" broker help mock-service publish stub-service verify version verifier mock-server stub-server plugin "
+# PACT_RUST_COMMANDS=" pact-plugin-cli pact-stub-server pact_mock_server_cli pact_verifier_cli "
 
 # git branch detection command fails due to cve fix https://github.blog/2022-04-12-git-security-vulnerability-announced/
 # fatal: unsafe repository (REPO is owned by someone else) in other workflow steps after running checkout
@@ -16,6 +17,8 @@ if [ -n "$1" ] && echo "$PACT_COMMANDS" | grep -F " $1 " > /dev/null 2>&1 ; then
   fi
 
   pact "$@"
+# elif [ -n "$1" ] && echo "$PACT_RUST_COMMANDS" | grep -F " $1 " > /dev/null 2>&1 ; then
+#   exec "./bin/$@"
 else
   exec "$@"
 fi
