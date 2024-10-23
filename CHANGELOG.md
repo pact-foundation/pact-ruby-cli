@@ -1,3 +1,11 @@
+<a name="1.3.0.9"></a>
+### 1.3.0.9 (2024-10-23)
+
+#### Features
+
+* **gems**
+  * updated pact (1.65.3), pact-provider-verifier (1.38.2), pact-support (1.20.2), pact_broker-client (1.76.2)	 ([21e7bb1](/../../commit/21e7bb1))
+
 <a name="1.3.0.8"></a>
 ### 1.3.0.8 (2024-10-03)
 
