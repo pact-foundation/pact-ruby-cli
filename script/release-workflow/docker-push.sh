@@ -6,12 +6,12 @@ set -euo >/dev/null
 ## ($TAG||$MAJOR_TAG||$LATEST)
 push() {
   ## These will use cached builds, so wont build every time.
-  docker buildx build --platform=linux/amd64,linux/arm64,linux/arm \
+  docker buildx build --platform=linux/amd64,linux/arm64 \
     --output=type=image,push=true \
     -t ${DOCKER_IMAGE_ORG_AND_NAME}:$1 .
 }
 push_ghcr() {
-  docker buildx build --platform=linux/amd64,linux/arm64,linux/arm \
+  docker buildx build --platform=linux/amd64,linux/arm64 \
   --output=type=image,push=true \
   -t ghcr.io/$(echo $DOCKER_IMAGE_ORG_AND_NAME | sed 's/pactfoundation/pact-foundation/g'):$1 .
 }

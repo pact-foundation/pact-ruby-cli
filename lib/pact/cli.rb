@@ -25,12 +25,12 @@ module Pact
   class AggregatedCLI < Thor
     HELP = ["help", "--help", "-h"]
 
-    desc 'mock-service', 'Run a Pact mock service'
+    desc 'mock-service', '(legacy) Run a Pact mock service'
     def mock_service
       ::Pact::MockService::CLI.start(process_argv("mock-service"))
     end
 
-    desc 'stub-service', 'Run a Pact stub service'
+    desc 'stub-service', '(legacy) Run a Pact stub service'
     def stub_service
       require 'pact/stub_service/cli'
       Pact::StubService::CLI.start(process_argv("stub-service"))
@@ -51,7 +51,7 @@ module Pact
       ::Pactflow::Client::CLI::Pactflow.start(process_argv("pactflow"))
     end
 
-    desc 'verify PACT_URL ...', Pact::ProviderVerifier::CLI::Verify.commands["verify"].description
+    desc 'verify PACT_URL ...', "(legacy) " + Pact::ProviderVerifier::CLI::Verify.commands["verify"].description
     long_desc Pact::ProviderVerifier::CLI::Verify.commands["verify"].long_description
 
     def verify
@@ -76,7 +76,22 @@ module Pact
       require 'pact/cli/version'
       puts Pact::Cli::VERSION
     end
-
+    desc 'plugin', 'Run the Pact plugin cli'
+    def plugin
+      execute_pact_rust_command "pact-plugin-cli"
+    end
+    desc 'verifier', 'Run a Pact verifier'
+    def verifier
+      execute_pact_rust_command "pact_verifier_cli"
+    end
+    desc 'mock-server', 'Run a Pact mock server'
+    def mock_server
+      execute_pact_rust_command "pact_mock_server_cli"
+    end
+    desc 'stub-server', 'Run a Pact stub server'
+    def stub_server
+      execute_pact_rust_command "pact-stub-server"
+    end
     no_commands do
       def self.exit_on_failure?
         true
@@ -90,4 +105,13 @@ module Pact
       end
     end
   end
+end
+
+
+def execute_pact_rust_command command
+  ARGV.shift
+  output = `./bin/#{command} #{ARGV.join(" ")}`
+  exit_status = $?.exitstatus
+  puts output
+  exit(exit_status)
 end

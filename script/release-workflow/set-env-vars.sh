@@ -8,7 +8,7 @@ if [ -n "${DOCKER_TARGET_PLATFORM:-}" ]; then
     export ARCHES="$ARCH"
     export $ARCHES
 else 
-    export ARCHES='amd64 arm64 arm'
+    export ARCHES='amd64 arm64'
     export ARCH=amd64
 fi
 
