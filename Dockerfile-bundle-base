@@ -20,7 +20,7 @@ RUN apk update \
              ruby-rdoc \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
-  && gem update --system 3.5.20 \
+  && gem update --system 3.5.23 \
   && gem install json \
   && gem install bigdecimal \
   && gem install racc \
@@ -32,4 +32,6 @@ WORKDIR $HOME
 
 ADD pact-cli.gemspec Gemfile Gemfile.lock $HOME/
 ADD lib/pact/cli/version.rb $HOME/lib/pact/cli/version.rb
-RUN bundle install --without test development
+RUN bundle config set without 'test development' \
+    bundle config set deployment 'true' \
+      && bundle install

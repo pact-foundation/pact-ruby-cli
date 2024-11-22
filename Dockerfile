@@ -24,7 +24,7 @@ RUN apk update \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
-  && gem update --system 3.5.20 \
+  && gem update --system 3.5.23 \
   && gem install json -v "~>2.7.6" \
   && gem install bigdecimal -v "~>3.1" \
   && gem install racc -v "~>1.8" \
