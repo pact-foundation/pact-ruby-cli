@@ -14,3 +14,6 @@ group :development do
   gem 'conventional-changelog', '~> 1.3', git: 'https://github.com/bethesque/conventional-changelog-ruby.git', ref: 'feat/pact-foundation'
   gem 'bump', '~> 0.9'
 end
+
+gem 'rack-reverse-proxy', git: 'https://github.com/pact-foundation/rack-reverse-proxy.git',
+                          branch: 'feat/rack_2_and_3_compat'
