@@ -1,3 +1,11 @@
+<a name="1.4.0.1"></a>
+### 1.4.0.1 (2024-11-29)
+
+#### Bug Fixes
+
+* **deps**
+  * use rack-reverse-proxy pact-foundation fork	 ([4b2395b](/../../commit/4b2395b))
+
 <a name="1.4.0.0"></a>
 ### 1.4.0.0 (2024-11-29)
 
