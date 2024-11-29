@@ -1,3 +1,14 @@
+<a name="1.4.0.0"></a>
+### 1.4.0.0 (2024-11-29)
+
+#### Features
+
+* **gems**
+  * updated pact-mock_service (3.12.3), pact-provider-verifier (1.39.0)	 ([fe4ca92](/../../commit/fe4ca92))
+  * updated pact (1.66.0), pact-support (~> 1.19, >= 1.19.0)	 ([c38e3e0](/../../commit/c38e3e0))
+  * updated pact-support (1.21.1)	 ([243e24a](/../../commit/243e24a))
+  * updated pact-support (1.21.0)	 ([2221910](/../../commit/2221910))
+
 <a name="1.3.0.11"></a>
 ### 1.3.0.11 (2024-11-22)
 
