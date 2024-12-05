@@ -20,7 +20,7 @@ PATH
   specs:
     pact-cli (1.4.0)
       bigdecimal (~> 3.1)
-      json (~> 2.8)
+      json (~> 2.9)
       pact-mock_service
       pact-provider-verifier
       pact_broker-client (~> 1.28)
