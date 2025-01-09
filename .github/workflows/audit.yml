@@ -3,6 +3,8 @@ name: Audit
 on:
   workflow_dispatch:
   push:
+    branches:
+      - master
   schedule:
     - cron: 0 0 * * 4 # Midnight Wednesday
 
@@ -14,7 +16,7 @@ jobs:
       matrix:
         DOCKER_TARGET_PLATFORM: [
           # linux/arm, # Disabled whilst waiting for next release of trivy with published arm artefacts
-          linux/arm64, 
+          linux/arm64,
           linux/amd64
           ]
     runs-on: ubuntu-latest
