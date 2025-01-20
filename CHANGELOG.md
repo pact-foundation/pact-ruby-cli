@@ -1,3 +1,16 @@
+<a name="1.4.0.4"></a>
+### 1.4.0.4 (2025-01-20)
+
+#### Features
+
+* **gems**
+  * updated pact (1.66.1), pact-support (~> 1.21, >= 1.21.0)	 ([15da6ab](/../../commit/15da6ab))
+
+#### Bug Fixes
+
+* Dockerfile-bundle-base to reduce vulnerabilities	 ([dac418c](/../../commit/dac418c))
+* Dockerfile to reduce vulnerabilities	 ([23b9cf6](/../../commit/23b9cf6))
+
 <a name="1.4.0.3"></a>
 ### 1.4.0.3 (2024-12-05)
 
