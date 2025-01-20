@@ -14,19 +14,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        DOCKER_TARGET_PLATFORM: [
-          # linux/arm, # Disabled whilst waiting for next release of trivy with published arm artefacts
-          linux/arm64,
-          linux/amd64
-          ]
-    runs-on: ubuntu-latest
+        os: [ ubuntu-latest, ubuntu-latest-arm ]
+    runs-on: ${{ matrix.os }}
     env:
-      DOCKER_TARGET_PLATFORM: ${{ matrix.DOCKER_TARGET_PLATFORM }}
       TAG: latest
     steps:
       - uses: actions/checkout@v4
-      - name: Prepare Docker multi-arch builder for ${{ matrix.DOCKER_TARGET_PLATFORM }}
-        if: ${{ matrix.DOCKER_TARGET_PLATFORM }} == 'linux/arm' || 'linux/arm64'
-        run: ./script/release-workflow/docker-prepare.sh
-      - name: Audit Docker image for ${{ matrix.DOCKER_TARGET_PLATFORM }}
+      - name: Audit Docker image for amd64
+        if: ${{ matrix.os }} == 'ubuntu-latest'
         run: ./script/release-workflow/audit.sh
+        env:
+          DOCKER_TARGET_PLATFORM: linux/amd64
+      - name: Audit Docker image for arm64
+        if: ${{ matrix.os }} == 'ubuntu-latest-arm'
+        run: ./script/release-workflow/audit.sh
+        env:
+          DOCKER_TARGET_PLATFORM: linux/arm64
