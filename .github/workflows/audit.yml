@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, ubuntu-latest-arm ]
+        os: [ ubuntu-latest, ubuntu-24.04-arm ]
     runs-on: ${{ matrix.os }}
     env:
       TAG: latest
@@ -26,7 +26,7 @@ jobs:
         env:
           DOCKER_TARGET_PLATFORM: linux/amd64
       - name: Audit Docker image for arm64
-        if: ${{ matrix.os }} == 'ubuntu-latest-arm'
+        if: ${{ matrix.os }} == 'ubuntu-24.04-arm'
         run: ./script/release-workflow/audit.sh
         env:
           DOCKER_TARGET_PLATFORM: linux/arm64
