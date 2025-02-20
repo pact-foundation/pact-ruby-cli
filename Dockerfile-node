@@ -1,5 +1,5 @@
 ARG NODE_VERSION=18
-FROM node:${NODE_VERSION}-alpine3.20
+FROM node:${NODE_VERSION}-alpine3.21
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 
@@ -32,8 +32,8 @@ RUN apk update \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
-  && gem update --system 3.5.20 \
-  && gem install json -v "~>2.7.6" \
+  && gem update --system 3.5.23 \
+  && gem install json -v "~>2.10" \
   && gem install bigdecimal -v "~>3.1" \
   && gem install racc -v "~>1.8" \
   && gem uninstall rubygems-update \
