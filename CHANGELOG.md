@@ -1,3 +1,12 @@
+<a name="1.4.0.5"></a>
+### 1.4.0.5 (2025-02-24)
+
+#### Bug Fixes
+
+* **deps**
+  * update pact-provider-verifier to 1.39.1	 ([f90ff78](/../../commit/f90ff78))
+  * bump json version	 ([a1a1eef](/../../commit/a1a1eef))
+
 <a name="1.4.0.4"></a>
 ### 1.4.0.4 (2025-01-20)
 
