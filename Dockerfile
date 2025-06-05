@@ -9,24 +9,24 @@ ADD docker/gemrc /root/.gemrc
 ADD docker/pact /usr/local/bin/pact
 
 RUN apk update \
-  && apk add ruby=3.3.6-r0 \
-             ruby-io-console=3.3.6-r0 \
+  && apk add ruby=3.3.8-r0 \
+             ruby-io-console=3.3.8-r0 \
              ca-certificates=20241121-r1 \
              libressl \
              less \
              git \
   && apk add --virtual "build-dependencies" \
              build-base=0.5-r3 \
-             ruby-dev=3.3.6-r0 \
+             ruby-dev=3.3.8-r0 \
              libressl-dev \
-             ruby-rdoc=3.3.6-r0 \
+             ruby-rdoc=3.3.8-r0 \
   && gem install bundler -v "~>2.5" \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
   && gem update --system 3.5.23 \
   && gem install json -v "~>2.10" \
-  && gem install bigdecimal -v "~>3.1" \
+  && gem install bigdecimal -v "~>3.2" \
   && gem install racc -v "~>1.8" \
   && gem uninstall rubygems-update \
   && gem cleanup \
