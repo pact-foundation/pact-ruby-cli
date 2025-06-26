@@ -1,3 +1,16 @@
+<a name="1.4.0.8"></a>
+### 1.4.0.8 (2025-06-26)
+
+#### Features
+
+* **gems**
+  * updated pact-support (1.21.3)	 ([baec8ec](/../../commit/baec8ec))
+
+#### Bug Fixes
+
+* **deps**
+  * update to ruby 3.4.4 (#162)	 ([61de7a3](/../../commit/61de7a3))
+
 <a name="1.4.0.7"></a>
 ### 1.4.0.7 (2025-06-05)
 
