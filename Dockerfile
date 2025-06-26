@@ -9,23 +9,22 @@ ADD docker/gemrc /root/.gemrc
 ADD docker/pact /usr/local/bin/pact
 
 RUN apk update \
-  && apk add ruby=3.3.8-r0 \
-             ruby-io-console=3.3.8-r0 \
-             ca-certificates=20241121-r1 \
+  && apk add ruby=3.4.4-r0 \
+             ca-certificates=20241121-r2 \
              libressl \
              less \
              git \
   && apk add --virtual "build-dependencies" \
              build-base=0.5-r3 \
-             ruby-dev=3.3.8-r0 \
+             ruby-dev=3.4.4-r0 \
              libressl-dev \
-             ruby-rdoc=3.3.8-r0 \
-  && gem install bundler -v "~>2.5" \
+             ruby-rdoc=3.4.4-r0 \
+  && gem install bundler -v "~>2.6" \
   && bundler -v \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
-  && gem update --system 3.5.23 \
-  && gem install json -v "~>2.10" \
+  && gem update --system 3.6.9 \
+  && gem install json -v "~>2.12" \
   && gem install bigdecimal -v "~>3.2" \
   && gem install racc -v "~>1.8" \
   && gem uninstall rubygems-update \
@@ -48,7 +47,7 @@ ADD lib/pact/cli/version.rb ./lib/pact/cli/version.rb
 RUN bundle config set without 'test development' \
     bundle config set deployment 'true' \
       && bundle install \
-      && find /usr/lib/ruby/gems/3.3.0/gems -name Gemfile.lock -maxdepth 2 -delete
+      && find /usr/lib/ruby/gems/3.4.0/gems -name Gemfile.lock -maxdepth 2 -delete
 ADD docker/entrypoint.sh $HOME/entrypoint.sh
 ADD bin ./bin
 ADD lib ./lib
