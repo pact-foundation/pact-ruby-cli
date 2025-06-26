@@ -27,10 +27,9 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        node: [ 16, 18, 20 ]
+        node: [20, 22, 24]
     steps:
       - uses: actions/checkout@v4
-
 
       - name: Login to Docker Hub
         run: script/release-workflow/docker-login.sh
