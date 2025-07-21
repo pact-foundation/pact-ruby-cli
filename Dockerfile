@@ -10,7 +10,7 @@ ADD docker/pact /usr/local/bin/pact
 
 RUN apk update \
   && apk add ruby=3.4.4-r0 \
-             ca-certificates=20241121-r2 \
+             ca-certificates=20250619-r0 \
              libressl \
              less \
              git \
@@ -24,7 +24,7 @@ RUN apk update \
   && bundle config build.nokogiri --use-system-libraries \
   && bundle config git.allow_insecure true \
   && gem update --system 3.6.9 \
-  && gem install json -v "~>2.12" \
+  && gem install json -v "~>2.13" \
   && gem install bigdecimal -v "~>3.2" \
   && gem install racc -v "~>1.8" \
   && gem uninstall rubygems-update \
