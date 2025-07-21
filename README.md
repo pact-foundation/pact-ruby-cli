@@ -163,6 +163,33 @@ The `-it` is required if you want the container to respond to a `ctl+c`. The con
 
 See https://github.com/pact-foundation/pact-mock_service#mock-service-usage for all options.
 
+### Pactflow AI
+
+The Pactflow AI tool is included in the image for convenience, for more commands refer to the [documentation](https://docs.pactflow.io/docs/ai/) and find example usage below:-
+
+```
+docker run --rm 
+-e PACT_BROKER_BASE_URL="https://YOUR_ORG.pactflow.io" \ 
+-e PACT_BROKER_TOKEN="YOUR_TOKEN" \
+pactflow-ai --help
+```
+
+demo only
+
+```
+docker run --rm  \
+  -e PACT_BROKER_BASE_URL="https://YOUR_ORG.pactflow.io" \ 
+  -e PACT_BROKER_TOKEN="YOUR_TOKEN" \
+  pactflow-ai \
+  generate \
+  --openapi /example/provider-contracts/oas.yml \
+  --endpoint "/admin/teams/{uuid}" \
+  --output src/api.pact.spec.ts \
+  --language typescript
+```
+
+
+
 ### Using a custom certificate
 
 ```

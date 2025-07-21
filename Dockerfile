@@ -48,7 +48,13 @@ RUN bundle config set without 'test development' \
     bundle config set deployment 'true' \
       && bundle install \
       && find /usr/lib/ruby/gems/3.4.0/gems -name Gemfile.lock -maxdepth 2 -delete
-RUN curl https://download.pactflow.io/ai/get.sh | sh -s -- -y
+RUN apk add curl && \
+  curl https://download.pactflow.io/ai/get.sh -o /tmp/get.sh && \
+  chmod +x /tmp/get.sh && \
+  sed -i '493s/^/echo ""/' /tmp/get.sh && \
+  /tmp/get.sh -y \
+  && apk del curl
+ENV PATH="/pact/.local/bin:$PATH"
 ADD docker/entrypoint.sh $HOME/entrypoint.sh
 ADD bin ./bin
 ADD lib ./lib
