@@ -176,14 +176,17 @@ pactfoundation/pact-cli:latest \
 pactflow-ai --help
 ```
 
-demo only
+**Demo**
+
+- Set `PACT_BROKER_BASE_URL` / `PACT_BROKER_TOKEN` in shell, before running below command
+- Create a folder called `output` in the current directory.
 
 ```
-docker run --rm  \
- pactfoundation/pact-cli:latest \
-  -v output:/output \
-  -e PACT_BROKER_BASE_URL="https://YOUR_ORG.pactflow.io" \ 
-  -e PACT_BROKER_TOKEN="YOUR_TOKEN" \
+docker run --rm \
+  -v $PWD/output:/output \
+  -e PACT_BROKER_BASE_URL \
+  -e PACT_BROKER_TOKEN \
+  pactfoundation/pact-cli:latest \
   pactflow-ai \
   generate \
   --openapi /pact/example/provider-contracts/oas.yml \
@@ -191,7 +194,6 @@ docker run --rm  \
   --output /output/api.pact.spec.ts \
   --language typescript
 ```
-
 
 
 ### Using a custom certificate
