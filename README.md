@@ -168,7 +168,8 @@ See https://github.com/pact-foundation/pact-mock_service#mock-service-usage for 
 The Pactflow AI tool is included in the image for convenience, for more commands refer to the [documentation](https://docs.pactflow.io/docs/ai/) and find example usage below:-
 
 ```
-docker run --rm 
+docker run --rm \
+--mount type=volume,source=<volume-name>,target=<mount-path-in-container> \
 -e PACT_BROKER_BASE_URL="https://YOUR_ORG.pactflow.io" \ 
 -e PACT_BROKER_TOKEN="YOUR_TOKEN" \
 pactflow-ai --help
@@ -178,6 +179,7 @@ demo only
 
 ```
 docker run --rm  \
+ --mount type=volume,source=<volume-name>,target=<mount-path-in-container> \
   -e PACT_BROKER_BASE_URL="https://YOUR_ORG.pactflow.io" \ 
   -e PACT_BROKER_TOKEN="YOUR_TOKEN" \
   pactflow-ai \
