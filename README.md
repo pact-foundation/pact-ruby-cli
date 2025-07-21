@@ -181,14 +181,14 @@ demo only
 ```
 docker run --rm  \
  pactfoundation/pact-cli:latest \
- --mount type=volume,source=<volume-name>,target=<mount-path-in-container> \
+  -v output:/output \
   -e PACT_BROKER_BASE_URL="https://YOUR_ORG.pactflow.io" \ 
   -e PACT_BROKER_TOKEN="YOUR_TOKEN" \
   pactflow-ai \
   generate \
-  --openapi /example/provider-contracts/oas.yml \
+  --openapi /pact/example/provider-contracts/oas.yml \
   --endpoint "/admin/teams/{uuid}" \
-  --output src/api.pact.spec.ts \
+  --output /output/api.pact.spec.ts \
   --language typescript
 ```
 
