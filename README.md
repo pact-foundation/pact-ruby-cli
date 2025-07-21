@@ -169,6 +169,7 @@ The Pactflow AI tool is included in the image for convenience, for more commands
 
 ```
 docker run --rm \
+pactfoundation/pact-cli:latest \
 --mount type=volume,source=<volume-name>,target=<mount-path-in-container> \
 -e PACT_BROKER_BASE_URL="https://YOUR_ORG.pactflow.io" \ 
 -e PACT_BROKER_TOKEN="YOUR_TOKEN" \
@@ -179,6 +180,7 @@ demo only
 
 ```
 docker run --rm  \
+ pactfoundation/pact-cli:latest \
  --mount type=volume,source=<volume-name>,target=<mount-path-in-container> \
   -e PACT_BROKER_BASE_URL="https://YOUR_ORG.pactflow.io" \ 
   -e PACT_BROKER_TOKEN="YOUR_TOKEN" \
