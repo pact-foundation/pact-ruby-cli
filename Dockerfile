@@ -51,7 +51,6 @@ RUN bundle config set without 'test development' \
 RUN apk add curl && \
   curl https://download.pactflow.io/ai/get.sh -o /tmp/get.sh && \
   chmod +x /tmp/get.sh && \
-  sed -i '493s/^/echo ""/' /tmp/get.sh && \
   /tmp/get.sh -y \
   && apk del curl
 ENV PATH="/pact/.local/bin:$PATH"
