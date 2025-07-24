@@ -1,6 +1,6 @@
 # Pact CLI
 
-This tool provides an amalgamated CLI of all the Pact CLI tools available in the Pact Ruby implementation (publish and verify pacts, and interact with the Pact Broker). While it is functionally the same as the [pact-ruby-standalone](https://github.com/pact-foundation/pact-ruby-standalone) it is packaged as a Docker container and a single top level entrypoint (`pact`).
+This tool provides an amalgamated CLI of all the Pact CLI tools available in the Pact Ruby implementation (to interact with the Pact Broker, publish and verify pacts) & the new Pact-Rust implementation (to run a mock or stub server, verify pact). While it is functionally the same as the [pact-ruby-standalone](https://github.com/pact-foundation/pact-ruby-standalone) plus the individual component rust CLI's it is packaged as a Docker container and a single top level entrypoint (`pact`).
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/pact-foundation/pact-msw-adapter/graphs/commit-activity)
 
@@ -18,8 +18,8 @@ This tool provides an amalgamated CLI of all the Pact CLI tools available in the
 
 Multi-platform images are available, and can be used cross-platform by setting the `platform` flag.
 
-- `--platform=linux/amd64` 
-- `--platform=linux/arm64` 
+- `--platform=linux/amd64`
+- `--platform=linux/arm64`
 
   ```sh
   docker run --rm it pactfoundation/pact-cli:latest /bin/sh -c 'uname -sm'
@@ -49,11 +49,19 @@ If you are using a Pact Broker with bearer token authentication (eg. PactFlow), 
 ```
 $ docker run --rm pactfoundation/pact-cli:latest help
 Commands:
-  pact-broker                     # Interact with a Pact Broker
+  help [COMMAND]                  # Describe available commands or one specific command
+  mock-server                     # Run a Pact mock server
+  mock-service                    # (legacy) Run a Pact mock service
+  pact-broker                     # Interact with a Pact Broker (also aliased as the subcommand `broker`)
+  pactflow                        # Interact with PactFlow
+  plugin                          # Run the Pact plugin cli
   publish PACT_DIRS_OR_FILES ...  # Publish pacts to a Pact Broker.
-  verify PACT_URL ...             # Verify pact(s) against a provider. S...
-  version                         # Print the version
-  help [COMMAND]                  # Describe available commands or one s...
+  stub-server                     # Run a Pact stub server
+  stub-service                    # (legacy) Run a Pact stub service
+  verifier                        # Run a Pact verifier
+  verify PACT_URL ...             # (legacy) Verify pact(s) against a provider. Supports local and networked (http-based) files.
+  version                         # Print the version of the CLI
+
 
 $ docker run --rm pactfoundation/pact-cli:latest pact-broker help
 Commands:
@@ -108,8 +116,11 @@ PACT_BROKER_PUBLISH_VERIFICATION_RESULTS=true GIT_COMMIT=fake-git-sha-for-demo$(
   docker-compose -f docker-compose-verify.yml \
   up --build --abort-on-container-exit --exit-code-from pact_verifier
 ```
+For the verifier, please see https://github.com/pact-foundation/pact-reference/tree/master/rust/pact_verifier_cli#command-line-interface for all verification options.
 
-See https://github.com/pact-foundation/pact-provider-verifier/#usage for all verification options.
+See [docker-compose-verify-legacy.yml](https://github.com/pact-foundation/pact-ruby-cli/blob/master/docker-compose-verify-legacy.yml) for the legacy Pact-Ruby based implementation.
+
+For the legacy verifier, please see https://github.com/pact-foundation/pact-provider-verifier/#usage for all verification options.
 
 ### Can I deploy?
 
@@ -142,7 +153,39 @@ docker run --rm \
 
 See https://github.com/pact-foundation/pact_broker-client#create-version-tag for all options.
 
+### Mock server
+
+```
+docker run -dit \
+  --rm \
+  --name pact-mock-server \
+  -p 8080:8080 -p 9000-9020 \
+  -v ${HOST_PACT_DIRECTORY}:/tmp/pacts \
+  pactfoundation/pact-cli:latest \
+  pact_mock_server_cli start \
+  --base-port 9000
+```
+
+The `-it` is required if you want the container to respond to a `ctl+c`. The container takes an unexpectedly long time to shut down when using `docker stop`. This is an open issue.
+
+See https://github.com/pact-foundation/pact-core-mock-server/tree/v1.0.x/pact_mock_server_cli#command-line-interface for all options.
+
+### Stub server
+
+```
+docker run --rm -it  \
+  -p 8080:8080 \
+  pactfoundation/pact-cli:latest \
+  stub-server \
+  --dir /pact/example/pacts \
+  --port 8080
+```
+
+Provides a stub server that can generate responses based on pact files. See https://github.com/pact-foundation/pact-stub-server?tab=readme-ov-file#command-line-interface for all options
+
 ### Mock service
+
+Legacy ruby mock-service, replaced by `mock-server` command implemented in Rust.
 
 ```
 docker run -dit \

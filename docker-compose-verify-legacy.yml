@@ -21,15 +21,9 @@ services:
       - GIT_COMMIT
       - GIT_BRANCH
     command: >
-      sh -c "
-      until wget -q --spider http://api:9292; do
-        sleep 1;
-      done;
-      /pact/entrypoint.sh verifier
-      --hostname api
-      --port 9292
-      --provider-name docker-example-provider
-      --provider-version ${GIT_COMMIT}
-      --provider-branch ${GIT_BRANCH}
-      --provider-tags ${GIT_BRANCH}
-      "
+      verify
+      --provider-base-url http://api:9292
+      --provider docker-example-provider
+      --provider-app-version ${GIT_COMMIT}
+      --provider-version-tag ${GIT_BRANCH}
+      --wait 20
