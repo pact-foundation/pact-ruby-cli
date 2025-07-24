@@ -2,10 +2,10 @@ FROM alpine:3.22.0
 
 LABEL maintainer="Beth Skurrie <beth@bethesque.com>"
 ARG TARGETPLATFORM
-ARG PLUGIN_CLI_VERSION=0.1.2
+ARG PLUGIN_CLI_VERSION=0.1.3
 ARG MOCK_SERVER_CLI_VERSION=1.0.6
-ARG VERIFIER_CLI_VERSION=1.1.3
-ARG STUB_SERVER_CLI_VERSION=0.6.0
+ARG VERIFIER_CLI_VERSION=1.2.0
+ARG STUB_SERVER_CLI_VERSION=0.6.2
 ENV NOKOGIRI_USE_SYSTEM_LIBRARIES=1
 ENV BUNDLE_SILENCE_ROOT_WARNING=1
 
@@ -76,14 +76,6 @@ RUN case ${TARGETPLATFORM} in \
     | gunzip -fc > ./bin/pact_verifier_cli && chmod +x ./bin/pact_verifier_cli \
     && wget -qO - https://github.com/pact-foundation/pact-core-mock-server/releases/download/pact_mock_server_cli-v1.0.6/pact_mock_server_cli-linux-${BIN_ARCH}.gz \
     | gunzip -fc > ./bin/pact_mock_server_cli && chmod +x ./bin/pact_mock_server_cli
-    # && wget -qO - https://github.com/pact-foundation/pact-stub-server/releases/download/v{STUB_SERVER_CLI_VERSION}/pact-stub-server-linux-${BIN_ARCH}.gz  \
-    # | gunzip -fc > ./bin/pact-stub-server-linux-${BIN_ARCH} && chmod +x ./bin/pact-stub-server \
-    # && wget -qO - https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v${PLUGIN_CLI_VERSION}/pact-plugin-cli-linux-${BIN_ARCH}.gz \
-    # | gunzip -fc > ./bin/pact-plugin-cli && chmod +x ./bin/pact-plugin-cli  \
-    # && wget -qO - https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v{VERIFIER_CLI_VERSION}/pact_verifier_cli-linux-${BIN_ARCH}.gz \
-    # | gunzip -fc > ./bin/pact_verifier_cli && chmod +x ./bin/pact_verifier_cli \
-    # && wget -qO - https://github.com/pact-foundation/pact-core-mock-server/releases/download/pact_mock_server_cli-v{MOCK_SERVER_CLI_VERSION}/pact_mock_server_cli-linux-${BIN_ARCH}.gz \
-    # | gunzip -fc > ./bin/pact_mock_server_cli && chmod +x ./bin/pact_mock_server_cli
 
 
 ENTRYPOINT ["/pact/entrypoint.sh"]
