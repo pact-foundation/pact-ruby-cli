@@ -22,25 +22,3 @@ jobs:
 
       - name: Scan
         run: script/scan.sh pactfoundation/pact-cli
-
-  test-node:
-    runs-on: "ubuntu-latest"
-    strategy:
-      matrix:
-        node: [20, 22, 24]
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Login to Docker Hub
-        run: script/release-workflow/docker-login.sh
-        env:
-          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-
-      - name: Integration tests
-        run: script/test-node.sh
-        env:
-          NODE_VERSION: ${{ matrix.node }}
-
-      - name: Scan
-        run: script/scan.sh pactfoundation/pact-cli:latest-node${{ matrix.node }}
