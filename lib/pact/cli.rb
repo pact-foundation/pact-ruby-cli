@@ -95,18 +95,24 @@ module Pact
     desc 'mock-server', 'Run a Pact mock server'
     def mock_server
       ARGV.shift
-      output = `./bin/pact_mock_server_cli #{ARGV.join(" ")}`
-      exit_status = $?.exitstatus
-      puts output
-      exit(exit_status)
+      IO.popen(["./bin/pact_mock_server_cli", *ARGV], err: [:child, :out]) do |io|
+        while (line = io.gets)
+          $stdout.write(line)
+        end
+        exit_status = Process.wait2(io.pid)[1].exitstatus
+        exit(exit_status)
+      end
     end
     desc 'stub-server', 'Run a Pact stub server'
     def stub_server
       ARGV.shift
-      output = `./bin/pact-stub-server #{ARGV.join(" ")}`
-      exit_status = $?.exitstatus
-      puts output
-      exit(exit_status)
+      IO.popen(["./bin/pact-stub-server", *ARGV], err: [:child, :out]) do |io|
+        while (line = io.gets)
+          $stdout.write(line)
+        end
+        exit_status = Process.wait2(io.pid)[1].exitstatus
+        exit(exit_status)
+      end
     end
     no_commands do
       def self.exit_on_failure?
