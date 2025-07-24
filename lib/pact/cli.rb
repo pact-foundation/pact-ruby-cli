@@ -76,22 +76,7 @@ module Pact
       require 'pact/cli/version'
       puts Pact::Cli::VERSION
     end
-    desc 'plugin', 'Run the Pact plugin cli'
-    def plugin
-      execute_pact_rust_command "pact-plugin-cli"
-    end
-    desc 'verifier', 'Run a Pact verifier'
-    def verifier
-      execute_pact_rust_command "pact_verifier_cli"
-    end
-    desc 'mock-server', 'Run a Pact mock server'
-    def mock_server
-      execute_pact_rust_command "pact_mock_server_cli"
-    end
-    desc 'stub-server', 'Run a Pact stub server'
-    def stub_server
-      execute_pact_rust_command "pact-stub-server"
-    end
+
     no_commands do
       def self.exit_on_failure?
         true
@@ -105,13 +90,4 @@ module Pact
       end
     end
   end
-end
-
-
-def execute_pact_rust_command command
-  ARGV.shift
-  output = `./bin/#{command} #{ARGV.join(" ")}`
-  exit_status = $?.exitstatus
-  puts output
-  exit(exit_status)
 end
