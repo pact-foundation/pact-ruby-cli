@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 
 docker build . -t pactfoundation/pact-cli
 docker run --rm pactfoundation/pact-cli:latest
-docker run --rm pactfoundation/pact-cli:latest --help
+docker run --rm pactfoundation/pact-cli:latest help
 docker run --rm pactfoundation/pact-cli:latest mock-service --help
 docker run --rm pactfoundation/pact-cli:latest pact-broker --help
 docker run --rm pactfoundation/pact-cli:latest pactflow --help
