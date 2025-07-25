@@ -1,4 +1,4 @@
-# Pact CLI
+# Pact Docker CLI
 
 This tool provides an amalgamated CLI of all the Pact CLI tools available in the Pact Ruby implementation (to interact with the Pact Broker, publish and verify pacts) & the new Pact-Rust implementation (to run a mock or stub server, verify pact). While it is functionally the same as the [pact-ruby-standalone](https://github.com/pact-foundation/pact-ruby-standalone) plus the individual component rust CLI's it is packaged as a Docker container and a single top level entrypoint (`pact`).
 
