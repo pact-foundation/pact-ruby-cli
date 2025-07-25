@@ -8,7 +8,7 @@ GIT
 PATH
   remote: .
   specs:
-    pact-cli (1.4.0)
+    pact-cli (1.5.0)
       bigdecimal (~> 3.2)
       json (~> 2.13)
       pact-mock_service
